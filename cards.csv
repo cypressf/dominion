@@ -1,0 +1,179 @@
+,,Card Types,,,,,,,Price,,Bonuses,,,,,
+Name,Expansion,Action,Attack,Curse,Duration,Reaction,Treasure,Victory,Cost,Pot,Action,Buy,Card,Coin,VP,Text
+Bag of Gold,Cornucopia,1,,,,,,,$0,,+1a,,,,,"Gain a Gold, putting it on top of your deck. (This is not in the Supply.)"
+Copper,Dominion,,,,,,1,,$0,,,,,$1,,
+Curse,Dominion,,,1,,,,,$0,,,,,,-1v,
+Diadem,Cornucopia,,,,,,1,,$0,,,,,$2,,"When you play this, +$1 per unused Action you have (Action, not Action card). (This is not in the Supply.)
+"
+Followers,Cornucopia,1,1,,,,,,$0,,,,+2c,,,Gain an Estate. Each other player gains a Curse and discards down to 3 cards in hand. (This is not in the Supply.)
+Princess,Cornucopia,1,,,,,,,$0,,,1b,,,,"While this is in play, cards cost $2 less, but not less than $0. (This is not in the Supply.)"
+Trusty Steed,Cornucopia,1,,,,,,,$0,,,,,,,Choose two: +2 Cards; or +2 Actions; or +$2; or gain 4 Silvers and put your deck into your discard pile. (This is not in the Supply.)
+Transmute,Alchemy,1,,,,,,,$1,1p,,,,,,"Trash a card from your hand. If it is an...Action card, gain a Duchy; Treasure card, gain a Transmute; or Victory card, gain a Gold."
+Apothecary,Alchemy,1,,,,,,,$2,1p,+1a,,+1c,,,Reveal the top 4 cards of your deck.  Put the revealed Coppers and Potions into your hand. Put the other cards back on top of your deck in any order.
+Cellar,Dominion,1,,,,,,,$2,,+1a,,,,,Discard any number of cards. +1 Card per card discarded.
+Chapel,Dominion,1,,,,,,,$2,,,,,,,Trash up to 4 cards from your hand.
+Courtyard,Intrigue,1,,,,,,,$2,,,,+3c,,,Put a card from your hand on top of your deck.
+Crossroads,Hinterlands,1,,,,,,,$2,,,,,,,"Reveal your hand. +1 per Victory card revealed. If this is the first time you played a Crossroads this turn, +3 Actions."
+Duchess,Hinterlands,1,,,,,,,$2,,,,,$2,,"Each player (including you) looks at the top card of his deck, and discards it or puts it back. In games using this, when you gain a Duchy, you may gain a Duchess."
+Embargo,Seaside,1,,,,,,,$2,,,,,$2,,"Trash this card. Put an Embargo token on top of a Supply pile. (When you buy a card with an Embargo token on it, gain a Curse)"
+Estate,Dominion,,,,,,,1,$2,,,,,,1v,
+Fool's Gold,Hinterlands,,,,,1,1,,$2,,,,,,,"If this is the first time you played a Fool's Gold this turn, this is worth 1 Coin, otherwise it's worth 4 Coins. When another player gains a Province, you may trash this from your hand. If you do, gain a Gold, putting it on your deck."
+Hamlet,Cornucopia,1,,,,,,,$2,,+1a,,+1c,,,"You may discard a card; If you do, +1 Action. 
+You may discard a card; If you do, +1 Buy."
+Haven,Seaside,1,,,1,,,,$2,,+1a,,+1c,,,"Set aside a card from your hand face down. At the start of your next turn, put it into your hand."
+Herbalist,Alchemy,1,,,,,,,$2,,,1b,,$1,,"When you discard this from play, you may put one of your Treasures from play on top of your deck."
+Lighthouse,Seaside,1,,,1,1,,,$2,,+1a,,,$1,,"Now and at the start of your next turn: +1 Coin. While this is in play, when another player plays an Attack card, it doesn't affect you."
+Moat,Dominion,1,,,,1,,,$2,,,,+2c,,,"When another player plays an Attack card, you may reveal this from your hand. If you do, you are unaffected by that Attack."
+Native Village,Seaside,1,,,,,,,$2,,+2a,,,,,Choose one: Set aside the top card of your deck face down on your Native Village mat; or put all the cards from your mat into your hand. You may look at the cards on your may at any time; return them to your deck at the end of the game.
+Pawn,Intrigue,1,,,,,,,$2,,,,,,,Choose two: +1 Card; +1 Action; +1 Buy; +1 Coin. (The choices must be different.)
+Pearl Diver,Seaside,1,,,,,,,$2,,+1a,,+1c,,,Look at the bottom card of your deck. You may put it on top.
+Scrying Pool,Alchemy,1,1,,,,,,$2,1p,+1a,,,,,"Each player (including you) reveals the top card of his deck and either discards it or puts it back, your choice. Then, reveal cards from your deck until you reveal a card that is not an action. Take all of these revealed cards into your hand."
+Secret Chamber,Intrigue,1,,,,1,,,$2,,,,,,,"Discard any number of cards. +1 Coin per card discarded. When another player plays an Attack card, you may reveal this card from your hand. If you do, +2 Cards, then put 2 cards from your hand to the top of your deck."
+University,Alchemy,1,,,,,,,$2,1p,+2a,,,,,You may gain an Action card costing up to 5 Coins.
+Alchemist,Alchemy,1,,,,,,,$3,1p,+1a,,+2c,,,"When you discard this from play, you may put this on top of your deck if you have a Potion in play."
+Ambassador,Seaside,1,1,,,,,,$3,,,,,,,Reveal a card from your hand.  Return up to 2 copies of it from your hand to the Supply.  Then each player gains a copy of it.
+Black Market,Promo,1,,,,,,,$3,,,,,$2,,"Reveal the top 3 cards of the Black Market deck. You may buy one of them immediately. Put the unbought cards on the bottom of the Black Market deck in any order. (Before the game, make a Black Market deck out of one copy of each Kingdom card not in the supply.)"
+Chancellor,Dominion,1,,,,,,,$3,,,,,$2,,You may immediately put your deck into your discard pile.
+Develop,Hinterlands,1,,,,,,,$3,,,,,,,"Trash a card from your hand. Gain a card costing exactly 1 Coin more than it and a card costing exactly 1 Coin less than it, in either order, putting them on top of your deck."
+Familiar,Alchemy,1,1,,,,,,$3,1p,+1a,,+1c,,,Each other player gains a Curse.
+Fishing Village,Seaside,1,,,1,,,,$3,,+2a,,,$1,,"At the start of your next turn: +1 Action, +1 Coin."
+Fortune Teller,Cornucopia,1,1,,,,,,$3,,,,,$2,,Each other player reveals cards from the top of his deck until he reveals a Victory or Curse card. He puts it on top and discards the other revealed cards.
+Great Hall,Intrigue,1,,,,,,1,$3,,+1a,,+1c,,1v,
+Loan,Prosperity,,,,,,1,,$3,,,,,$1,,"When you play this, reveal cards from your deck until you reveal a Treasure. Discard it or trash it. Discard the other cards."
+Lookout,Seaside,1,,,,,,,$3,,+1a,,,,,Look at the top 3 cards of your deck. Trash one of them. Discard one of them. Put the other one on top of your deck.
+Masquerade,Intrigue,1,,,,,,,$3,,,,+2c,,,Each player passes a card from his hand o the left once. Then you may trash a card from your hand.
+Menagerie,Cornucopia,1,,,,,,,$3,,+1a,,,,,"Reveal your hand. If there are no duplicate cards in it, +3 Cards.
+Otherwise, +1 Card."
+Oasis,Hinterlands,1,,,,,,,$3,,+1a,,+1c,$1,,Discard a card.
+Oracle,Hinterlands,1,1,,,,,,$3,,,,,,,"Each player (including you) reveals the top 2 cards of his deck, and you choose one: either he discards them, or he puts them back on top in an order he chooses. +2 Cards."
+Philosopher's Stone,Alchemy,,,,,,1,,$3,1p,,,,,,"When you play this card, count your deck and discard pile. Worth 1 Coin per 5 cards total between them (rounded down)."
+Scheme,Hinterlands,1,,,,,,,$3,,+1a,,+1c,,,"At the start of Clean-up this turn, you may choose an Action card you have in play. If you discard it from play this turn, put it on your deck."
+Shanty Town,Intrigue,1,,,,,,,$3,,+2a,,,,,"Reveal your hand. If you have no Action cards in hand, +2 Cards."
+Silver,Dominion,,,,,,1,,$3,,,,,$2,,
+Smugglers,Seaside,1,,,,,,,$3,,,,,,,Gain a copy of a card costing up to 6 Coins that the player to your right gained on his last turn.
+Steward,Intrigue,1,,,,,,,$3,,,,,,,Choose one: +2 Cards; or +2 Coins; or trash 2 cards from your hand.
+Swindler,Intrigue,1,1,,,,,,$3,,,,,$2,,Each other player trashes the top card of his deck and gains a card with the same cost that you choose.
+Trade Route,Prosperity,1,,,,,,,$3,,,1b,,,,"+1 Coin per token on the Trade Route mat. Trash a card from your hand. Setup: Put a token on each Victory card Supply pile. When a card is gained from that pile, Move the token to the Trade Route mat."
+Tunnel,Hinterlands,,,,,1,,1,$3,,,,,,2v,"When you discard this other than during a Clean-up phase, you may reveal it. If you do, gain a Gold."
+Village,Dominion,1,,,,,,,$3,,+2a,,+1c,,,
+Warehouse,Seaside,1,,,,,,,$3,,+1a,,+3c,,,Discard 3 cards.
+Watchtower,Prosperity,1,,,,1,,,$3,,,,,,,"Draw until you have 6 cards in hand. --When you gain a card, you may reveal this from your hand. If you do, trash that card or put it on top of your deck."
+Wishing Well,Intrigue,1,,,,,,,$3,,+1a,,+1c,,,"Name a card. Reveal the top card of your deck. If it's the named card, put it into your hand."
+Woodcutter,Dominion,1,,,,,,,$3,,,1b,,$2,,
+Workshop,Dominion,1,,,,,,,$3,,,,,,,Gain a card costing up to 4 Coins.
+Baron,Intrigue,1,,,,,,,$4,,,1b,,,,"You may discard an Estate card.  If you do, +4 Coins. Otherwise, gain an Estate card."
+Bishop,Prosperity,1,,,,,,,$4,,,,,$1,,"+1VP. Trash a card from your hand. +VP equal to half its cost in coins, rounded down. Each other player may trash a card from his hand."
+Bridge,Intrigue,1,,,,,,,$4,,,1b,,$1,,"All cards (including cards in players' hands) cost 1 Coin less this turn, but not less than 0."
+Bureaucrat,Dominion,1,1,,,,,,$4,,,,,,,Gain a Silver card; put it on top of your deck. Each other player reveals a Victory card from his hand and puts it on his deck (or reveals a hand with no Victory cards).
+Caravan,Seaside,1,,,1,,,,$4,,+1a,,+1c,,,"At the start of your next turn, +1 Card."
+Conspirator,Intrigue,1,,,,,,,$4,,,,,$2,,"If you've played 3 or more Actions this turn (counting this): +1 Card, +1 Action."
+Coppersmith,Intrigue,1,,,,,,,$4,,,,,,,Copper produces an extra 1 Coin this turn.
+Cutpurse,Seaside,1,1,,,,,,$4,,,,,$2,,Each other player discards a Copper card (or reveals a hand with no Copper).
+Envoy,Promo,1,,,,,,,$4,,,,,,,Reveal the top 5 cards of your deck. The player to your left chooses one for you to dicard. Draw the rest.
+Farming Village,Cornucopia,1,,,,,,,$4,,+2a,,,,,Reveal cards from the top of your deck until you reveal an Action or Treasure card. Put that card into your hand and discard the other cards.
+Feast,Dominion,1,,,,,,,$4,,,,,,,Trash this card. Gain a card costing  up to 5 Coins.
+Gardens,Dominion,,,,,,,1,$4,,,,,,,Worth 1VP for every 10 cards in your deck (rounded down).
+Golem,Alchemy,1,,,,,,,$4,1p,,,,,,"Reveal cards from your deck until you reveal 2 Action cards other than Golem cards. Discard the other cards, then play the Action cards in either order."
+Horse Traders,Cornucopia,1,,,,1,,,$4,,,1b,,$3,,"Discard 2 cards. When another player plays an Attack card, you may set this aside from your hand. If you do, then at the start of your next turn, +1 Card and return this to your hand."
+Ironworks,Intrigue,1,,,,,,,$4,,,,,,,"Gain a card costing up to 4 Coins. If it is an Action card, +1 Action; Treasure card, +1 Coin; or Victory card, +1 Card."
+Island,Seaside,1,,,,,,1,$4,,,,,,2v,Set aside this and another card from your hand. Return them to your deck at the end of the game.
+Jack of All Trades,Hinterlands,1,,,,,,,$4,,,,,,,Gain a Silver. Look at the top card of your deck; discard it or put it back. Draw until you have 5 cards in hand. You may trash a card from your hand that is not a Treasure.
+Militia,Dominion,1,1,,,,,,$4,,,,,$2,,Each other player discards down to 3 cards in his hand.
+Mining Village,Intrigue,1,,,,,,,$4,,+2a,,+1c,,,"You may trash this card immediately. If you do, +2 Coins."
+Moneylender,Dominion,1,,,,,,,$4,,,,,,,"Trash a Copper card from your hand. If you do, +3 Coins."
+Monument,Prosperity,1,,,,,,,$4,,,,,$1,,+1VP
+Navigator,Seaside,1,,,,,,,$4,,,,,$2,,"Look at the top 5 cards of your deck. Either discard all of them, or put them back on top of your deck in any order."
+Noble Brigand,Hinterlands,1,1,,,,,,$4,,,,,$1,,"When you buy this or play it, each other player reveals the top 2 cards of his deck, trashes a revealed Silver or Gold you choose, and discards the rest. If he didn't reveal a Treasure, he gains a Copper. You gain the trashed cards."
+Nomad Camp,Hinterlands,1,,,,,,,$4,,,1b,,$2,,"When you gain this, put it on top of your deck."
+Pirate Ship,Seaside,1,1,,,,,,$4,,,,,,,"Choose one: Each other player reveals the top 2 cards of his deck, trashes a revealed Treasure that you choose, discards the rest, and if anyone trashed a Treasure you take a Coin token; or +1 Coin per Coin token you've taken with Pirate Ships this game."
+Potion,Alchemy,,,,,,1,,$4,,,,,,,+1 Potion.
+Quarry,Prosperity,,,,,,1,,$4,,,,,$1,,"While this card is in play, Action cards cost 2 Coins less, but not less than 0 Coins."
+Remake,Cornucopia,1,,,,,,,$4,,,,,,,Do this twice: Trash a card from your hand then gain a card costing exactly 1 more than the trashed card.
+Remodel,Dominion,1,,,,,,,$4,,,,,,,Trash a card from your hand. Gain a card costing up to 2 Coins more than the trashed card.
+Salvager,Seaside,1,,,,,,,$4,,,1b,,,,Trash a card from your  hand. +Coins equal to its cost.
+Scout,Intrigue,1,,,,,,,$4,,+1a,,,,,Reveal the top 4 cards of your deck. Put the revealed Victory cards into your hand. Put the other cards on top of your deck in any order.
+Sea Hag,Seaside,1,1,,,,,,$4,,,,,,,"Each other player discards the top card of his deck, then gains a Curse card, putting it on top of his deck."
+Silk Road,Hinterlands,,,,,,,1,$4,,,,,,,Worth 1 VP for every 4 Victory cards in your deck (round down).
+Smithy,Dominion,1,,,,,,,$4,,,,+3c,,,
+Spice Merchant,Hinterlands,1,,,,,,,$4,,,,,,,"You may trash a Treasure from your hand. If you do, choose one:
++2 Cards and +1 Action; or +$2 and +1 Buy."
+Spy,Dominion,1,1,,,,,,$4,,+1a,,+1c,,,"Each player (including you) reveals the top card of his deck and either discards it or puts it back, your choice."
+Talisman,Prosperity,,,,,,1,,$4,,,,,$1,,"While this card is in play, when you buy a card costing 4 Coins or less that is not a Victory card, gain a copy of it."
+Thief,Dominion,1,1,,,,,,$4,,,,,,,"Each other player reveals the top 2 cards of his deck. If they revealed any Treasure cards, they trash one of them that you choose. You may gain any or all of these trashed cards. They discard the other revealed cards."
+Throne Room,Dominion,1,,,,,,,$4,,,,,,,Choose an Action card in your  hand. Play it twice.
+Tournament,Cornucopia,1,,,,,,,$4,,+1a,,,,,"Each player may reveal a Province from his hand. If you do, discard it and gain a Prize (from the Prize pile) or a Duchy, putting it on top of your deck. If no-one else does, +1 Card +1 Coin."
+Trader,Hinterlands,1,,,,1,,,$4,,,,,,,"Trash a card from your hand. Gain a number of Silvers equal to its cost in coins. When you would gain a card, you may reveal this from your hand. If you do, instead, gain a Silver."
+Treasure Map,Seaside,1,,,,,,,$4,,,,,,,"Trash this and another copy of Treasure Map from your hand. If you do trash two Treasure Maps, gain 4 Gold cards, putting them on top of your deck."
+Walled Village,Promo,1,,,,,,,$4,,+1a,,+2c,,,"At the start of Clean-up, if you have this and no more than one other Action card in play, you may put this on top of your deck."
+Worker's Village,Prosperity,1,,,,,,,$4,,+2a,1b,+1c,,,
+Young Witch,Cornucopia,1,1,,,,,,$4,,,,+2c,,,"Discard 2 cards. Each other player may reveal a Bane card from his hand.
+If he doesn't, he gains a Curse. Setup: Add an extra Kingdom card pile costing 2 or 3 to the Supply. Cards from that pile are Bane cards."
+Apprentice,Alchemy,1,,,,,,,$5,,+1a,,,,,Trash a card from your hand. +1 Card per Coin it costs.  +2 Cards if there is a Potion in the cost.
+Bazaar,Seaside,1,,,,,,,$5,,+2a,,+1c,$1,,
+Cache,Hinterlands,,,,,,1,,$5,,,,,$3,,"When you gain this, gain two Coppers."
+Cartographer,Hinterlands,1,,,,,,,$5,,+1a,,+1c,,,Look at the top 4 cards of your deck. Discard any number of them. Put the rest back on top in any order.
+City,Prosperity,1,,,,,,,$5,,+2a,,+1c,,,"If there are one or more empty Supply piles, +1 Card. If there are two or more, +1 Coin and +1 Buy."
+Contraband,Prosperity,,,,,,1,,$5,,,1b,,$3,,"When you play this, the player to your  left names a card. You can't buy that card this turn."
+Council Room,Dominion,1,,,,,,,$5,,,1b,+4c,,,Each other player draws a card.
+Counting House,Prosperity,1,,,,,,,$5,,,,,,,"Look through your discard pile, reveal any number of Copper cards from it, and put them into your hand."
+Duchy,Dominion,,,,,,,1,$5,,,,,,3v,
+Duke,Intrigue,,,,,,,1,$5,,,,,,,Worth 1VP per Duchy you have.
+Embassy,Hinterlands,1,,,,,,,$5,,,,+5c,,,"Discard 3 cards. When you gain this, each other player gains a Silver."
+Explorer,Seaside,1,,,,,,,$5,,,,,,,"You may reveal a Province card from your hand. If you do, gain a Gold card, putting it into your hand. Otherwise, gain a Silver card, putting it into your hand."
+Festival,Dominion,1,,,,,,,$5,,+2a,1b,,$2,,
+Ghost Ship,Seaside,1,1,,,,,,$5,,,,+2c,,,Each other player with 4 or more cards in hand puts cards from his hand on top of his deck until he has 3 cards in his hand.
+Governor,Promo,1,,,,,,,$5,,+1a,,,,,Choose one: you get the version in parentheses. Each player gets +1 (+3) Cards; or each player gains a Silver (Gold); or each player may trash a card from his hand and gain a card costing exactly 1 (2) more.
+Haggler,Hinterlands,1,,,,,,,$5,,,,,$2,,"While this is in play, when you buy a card, gain a card costing less than it that is not a Victory card."
+Harvest,Cornucopia,1,,,,,,,$5,,,,,,,"Reveal the top 4 cards of your deck, then discard them. +1 Coin per differently named card revealed."
+Highway,Hinterlands,1,,,,,,,$5,,+1a,,+1c,,,"While this is in play, cards cost $1 less, but not less than $0."
+Horn of Plenty,Cornucopia,,,,,,1,,$5,,,,,,,"When you play this, gain a card costing up to 1 Coin per differently named card you have in play, counting this. If it's a Victory card, trash this."
+Hunting Party,Cornucopia,1,,,,,,,$5,,+1a,,+1c,,,Reveal your hand. Reveal cards from your deck until you reveal a card that isn't a duplicate of one in your hand and discard the rest.
+Ill-Gotten Gains,Hinterlands,,,,,,1,,$5,,,,,$1,,"When you play this, you may gain a Copper, putting it into your hand. When you gain this, each other player gains a Curse."
+Inn,Hinterlands,1,,,,,,,$5,,+2a,,+2c,,,"Discard 2 cards. When you gain this, look through your discard pile (including this), reveal any number of Action cards from it, and shuffle them into your deck."
+Jester,Cornucopia,1,1,,,,,,$5,,,,,$2,,"Each other player discards the top card of his deck. If it's a Victory card he gains a Curse. Otherwise he gains a copy of the discarded card or you do, your choice."
+Laboratory,Dominion,1,,,,,,,$5,,+1a,,+2c,,,
+Library,Dominion,1,,,,,,,$5,,,,,,,"Draw until you have 7 cards in hand. You may set aside any Action cards drawn this way, as you draw them; discard the set aside cards after you finish drawing."
+Mandarin,Hinterlands,1,,,,,,,$5,,,,,$3,,"Put a card from your hand on top of your deck. When you gain this, put all Treasures you have in play on top of your deck in any order."
+Margrave,Hinterlands,1,1,,,,,,$5,,,1b,+3c,,,"Each other player draws a card, then discards down to 3 cards in hand."
+Market,Dominion,1,,,,,,,$5,,+1a,1b,+1c,$1,,
+Merchant Ship,Seaside,1,,,1,,,,$5,,,,,$2,,Now and at the start of your next turn: +2 Coins.
+Mine,Dominion,1,,,,,,,$5,,,,,,,Trash a Treasure card from your hand. Gain a Treasure card costing up to 3 more; put it into your hand.
+Minion,Intrigue,1,1,,,,,,$5,,+1a,,,,,"Choose one: +2 Coins; or discard your hand, +4 Cards, and each other player with at least 5 cards in hand discards his hand and draws 4 cards."
+Mint,Prosperity,1,,,,,,,$5,,,,,,,"You may reveal a Treasure card from your hand. Gain a copy of it. When you buy this, trash all Treasures you have in play."
+Mountebank,Prosperity,1,1,,,,,,$5,,,,,$2,,"Each other player may discard a Curse. If he doesn't, he gains a Curse and a Copper."
+Outpost,Seaside,1,,,1,,,,$5,,,,,,,You only draw 3 cards (instead of 5) in this turn's Clean-up phase. Take an extra turn after this one. This can't cause you to take more than two consecutive  turns.
+Rabble,Prosperity,1,1,,,,,,$5,,,,+3c,,,"Each other player reveals the top 3 cards of his deck, discard the revealed Actions and Treasures, and puts the rest back on top in any order he chooses."
+Royal Seal,Prosperity,,,,,,1,,$5,,,,,$2,,"While this is in play, when you gain a card, you may put it on top of your deck."
+Saboteur,Intrigue,1,1,,,,,,$5,,,,,,,Each other player reveals cards from the top of his deck until revealing one costing 3 Coins or more. He trashes that card and may gain a card costing at most 2 less than it. He discards the other revealed cards.
+Stables,Hinterlands,1,,,,,,,$5,,,,,,,"You may discard a Treasure. If you do, +3 Cards and +1 Action."
+Stash,Promo,,,,,,1,,$5,,,,,$2,,"When you shuffle, you may put this anywhere in your deck."
+Tactician,Seaside,1,,,1,,,,$5,,,,,,,"Discard your hand. If you discarded any cards this way, then at the start of your  next turn, +5 Cards, +1 Buy, and +1 Action."
+Torturer,Intrigue,1,1,,,,,,$5,,,,+3c,,,"Each other player chooses one: he discards 2 cards; or he gains a Curse card, putting it in his hand."
+Trading Post,Intrigue,1,,,,,,,$5,,,,,,,"Trash 2 cards from your hand. If you do, gain a Silver card; put it into your hand."
+Treasury,Seaside,1,,,,,,,$5,,+1a,,+1c,$1,,"When you discard this from play, if you didn't buy a Victory card this turn, you may put this on top of your deck."
+Tribute,Intrigue,1,,,,,,,$5,,,,,,,"The player to your left reveals then discards the top 2 cards of his deck. For each differently named card revealed, if it is an…Action card, +2 Actions; Treasure card, +2 Coins; or Victory card, +2 Cards."
+Upgrade,Intrigue,1,,,,,,,$5,,+1a,,+1c,,,Trash a card from your hand. Gain a card costing exactly 1 Coin more than it.
+Vault,Prosperity,1,,,,,,,$5,,,,+2c,,,"Discard any number of cards. +1 Coin per card discarded. Each other player may discard 2 cards. If he does, he draws a card."
+Venture,Prosperity,,,,,,1,,$5,,,,,$1,,"When you play this, reveal cards from your deck until you reveal a Treasure. Discard the other cards. Play that Treasure."
+Wharf,Seaside,1,,,1,,,,$5,,,1b,+2c,,,"Now and at the start of your next turn: +2 Cards, +1 Buy."
+Witch,Dominion,1,1,,,,,,$5,,,,+2c,,,Each other player gains a Curse card.
+Adventurer,Dominion,1,,,,,,,$6,,,,,,,Reveal cards from your deck until you reveal 2 Treasure  cards. Put those Treasure cards into your hand and discard the other revealed cards.
+Border Village,Hinterlands,1,,,,,,,$6,,+1a,,+2c,,,"When you gain this, gain a card costing less than this."
+Fairgrounds,Cornucopia,,,,,,,1,$6,,,,,,,Worth 2 VP for every 5 differnly named cards in your deck (rounded down).
+Farmland,Hinterlands,,,,,,,1,$6,,,,,,2v,"When you buy this, trash a card from your hand. Gain a card costing exactly $2 more than the trashed card."
+Gold,Dominion,,,,,,1,,$6,,,,,$3,,
+Goons,Prosperity,1,1,,,,,,$6,,,1b,,$2,,"Each other player discards down to 3 cards in hand. --While this is in play, when you buy a card, +1VP."
+Grand Market,Prosperity,1,,,,,,,$6,,+1a,1b,+1c,$2,,You can't buy this if you have any Copper in play.
+Harem,Intrigue,,,,,,1,1,$6,,,,,$2,2v,
+Hoard,Prosperity,,,,,,1,,$6,,,,,$2,,"While this is in play, when you buy a Victory card, gain a Gold."
+Nobles,Intrigue,1,,,,,,1,$6,,,,,,2v,Choose one: +3 Cards; or +2 Actions.
+Possession,Alchemy,1,,,,,,,$6,1p,,,,,,"The player to your left takes an extra turn after this one, in which you can see all cards he can and make all decisions for him. Any cards he would gain on that turn, you gain instead; any cards of his that are trashed are set aside and returned to his discard pile at the end of the turn."
+Bank,Prosperity,,,,,,1,,$7,,,,,,,"When you play this, it's worth 1 Coin per Treasure card you have in play (counting this)."
+Expand,Prosperity,1,,,,,,,$7,,,,,,,Trash a card from your hand. Gain a card costing up to 3 Coins more than the trashed card.
+Forge,Prosperity,1,,,,,,,$7,,,,,,,Trash any number of cards from your hand. Gain a card with cost exactly equal to the total cost in coins of the trashed cards.
+King's Court,Prosperity,1,,,,,,,$7,,,,,,,You may choose an Action card in your hand. Play it three times.
+Peddler,Prosperity,1,,,,,,,$8,,+1a,,+1c,$1,,"During your Buy phase, this costs 2 Coins less per Action card you have in play, but not less than 0."
+Province,Dominion,,,,,,,1,$8,,,,,,6v,
+Platinum,Prosperity,,,,,,1,,$9,,,,,$5,,
+Colony,Prosperity,,,,,,,1,$11,,,,,,10v,
+Vineyard,Alchemy,,,,,,,1,,1p,,,,,,Worth 1VP for every 3 Action cards in your deck (rounded down).
