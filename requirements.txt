@@ -5,6 +5,7 @@ SQLAlchemy==0.7.9
 Werkzeug==0.8.3
 distribute==0.6.26
 gunicorn==0.14.6
+psycopg2==2.4.5
 virtualenv==1.7.1.2
 virtualenvwrapper==3.4
 wsgiref==0.1.2
