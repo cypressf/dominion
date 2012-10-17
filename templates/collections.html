@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for collection in collections %}
+<ul>
+{% for card in collection %}
+<li>{{ card.name }}</li>
+{% endfor %}
+</ul>
+{% endfor %}
+{% endblock %}
+
+{%block nav%}
+            <li><a href="/">Dominion Randomizer</a></li>
+            <li><a href="saved_sets" class="active">Saved Sets</a></li>
+{%endblock%}
