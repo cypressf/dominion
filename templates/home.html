@@ -11,12 +11,14 @@
 </section>
 <section id="cards">
     {% for expansion in cards %}
+    <div id="{{ expansion }}" class="expansion">
     <h1>{{ expansion }}</h1>
     <ul>
         {% for c in cards[expansion] %}
         <li>{{ c }}</li>
         {% endfor %}
     </ul>
+    </div>
     {% endfor %}
 </section>
 {% endblock %}
