@@ -1,0 +1,39 @@
+body {
+    font-family:sans-serif;
+    padding:0;
+    margin:0;
+    background:#282b37;
+
+}
+section {
+    background:#9ea9e5;
+}
+
+label {
+    display:block;
+    padding:1em;
+}
+
+header, footer {
+    font-weight:100;
+    background:#282b37;
+    color:#eee;
+    margin:0;
+}
+
+header a, footer a{
+    color:#8a94ff;
+}
+
+header h1 {
+    margin:0;
+    padding:1em;
+    font-weight:100;
+}
+
+footer{
+}
+
+footer p {
+    padding: 1em;
+}

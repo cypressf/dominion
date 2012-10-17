@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="form">
+    <form method="GET" action="">
+        {% for e in all_expansions %}
+        <label><input type="checkbox" name="expansion" value="{{ e }}"{% if e in expansions %} checked{% endif %}> {{ e }}</label>
+        {% endfor %}
+        <input type="submit" value="Randomize!">
+    </form>
+</section>
+<section id="cards">
+    {% for expansion in cards %}
+    <h1>{{ expansion }}</h1>
+    <ul>
+        {% for c in cards[expansion] %}
+        <li>{{ c }}</li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</section>
+{% endblock %}

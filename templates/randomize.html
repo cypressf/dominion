@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="form">
+    <form method="GET" action="randomize">
+        {% for e in all_expansions %}
+        <label><input type="checkbox" name="expansion" value="{{ e }}"> {{ e }}</label>
+        {% endfor %}
+        <input type="submit" value="Randomize!">
+    </form>
+</section>
+{% endblock %}

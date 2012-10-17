@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Dominion Randomizer</title>
-    </head>
-    <body>
-        <h1>"Hello World!" {{ bla.name }}</h1>
-    </body>
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}Dominion Randomizer{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Dominion Randomizer</h1>
+    </header>
+
+    {% block content %}{% endblock %}
+    
+    <footer>
+    {% block footer %}
+    <p>&copy; Copyright 2011 by <a href="http://cypressf.com">Cypress</a>.</p>
+    {% endblock %}
+    </footer>
+</body>
 </html>
