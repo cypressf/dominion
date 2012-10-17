@@ -27,7 +27,11 @@ body {
     padding:0.3em;
 }
 
-.expansion {
+#cards form {
+
+}
+
+#cards .expansion {
     width:10em;
     float:left;
     padding:0.5em;
@@ -35,11 +39,11 @@ body {
     border:1px solid;
 }
 
-form {
+#form form{
     margin-right:1em;
 }
 
-label {
+#form label {
     display:block;
     padding:0.9em;
     border:1px solid;
@@ -50,21 +54,61 @@ label {
 input[type=submit] {
     -webkit-appearance:none;
     display:block;
-    background:#fff;
     border:1px solid;
     font-size:1em;
     padding:1em;
     border-radius:1em;
-    background:#343de7;
-    color:#fff;
-    width:100%;
     cursor:pointer;
 }
-input[type=submit]:hover {
+
+#cards input[type=submit].disabled,
+#cards input[type=submit].disabled:hover,
+#cards input[type=submit].disabled:active {
+    box-shadow:none;
+    background:#cecece;
+    cursor:default;
+}
+
+#cards input[type=submit].disabled.saved,
+#cards input[type=submit].disabled.saved:hover,
+#cards input[type=submit].disabled.saved:active {
+    box-shadow:none;
+    background:#b2f7b4;
+    cursor:default;
+}
+
+#cards input[type=submit] {
+    background:#fafe9b;
+}
+
+#cards input[type=submit]:hover {
+    background:#fff49a;
+    box-shadow:0px 0px 5px #8a8554 inset;
+
+}
+
+#cards input[type=submit]:active {
+    background:#ffe67c;
+    box-shadow:0px 0px 10px #6c6842 inset;
+
+}
+
+#cards input[type=submit] {
+    background:#fafe9b;
+}
+
+#form input[type=submit] {
+    width:100%;
+    background:#343de7;
+    color:#fff;
+
+}
+
+#form input[type=submit]:hover {
     background:#242cb8;
     box-shadow:0px 0px 5px #000 inset ;
 }
-input[type=submit]:active {
+#form input[type=submit]:active {
     background:#1f26a7;
     box-shadow:0px 0px 10px #000 inset;
 }
@@ -77,10 +121,30 @@ header a, footer a{
     color:#535a9e;
 }
 
-header h1 {
-    margin:0;
-    padding:1em;
+header ul {
+    font-size:1.5em;
     font-weight:100;
+    list-style:none;
+    width:100%;
+    height:3em;
+    margin:0 0 1em 0;
+}
+
+header li {
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+header li a {
+    margin:0;
+    display:block;
+    line-height:1em;
+    padding:1em;
+    text-decoration:none;
+}
+header li a.active {
+    text-decoration:underline;
 }
 
 footer{

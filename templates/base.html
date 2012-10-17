@@ -8,11 +8,16 @@
 </head>
 <body>
     <header>
-        <h1>Dominion Randomizer</h1>
+    <nav>
+        <ul>
+            {%block nav %}{%endblock %}
+        </ul>
+    </nav>
     </header>
-    
     <div id="content">
     {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='jq.js') }}"></script>
+    {% block js %}{% endblock %}
     </div>
 
     <footer>

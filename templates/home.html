@@ -9,7 +9,19 @@
         <input type="submit" value="Randomize!">
     </form>
 </section>
+
 <section id="cards">
+    {% if cards%}
+    <form method="POST" action="save_collection">
+        {% for expansion in cards %}
+            {% for c in cards[expansion] %}
+            <input type="hidden" name="cards" value="{{ c }}">
+            {% endfor %}
+        {% endfor %}
+         <input type="submit" value="Save this set" id="fungame">
+    </form>
+    {% endif %}
+
     {% for expansion in cards %}
     <div id="{{ expansion }}" class="expansion">
     <h1>{{ expansion }}</h1>
@@ -21,4 +33,25 @@
     </div>
     {% endfor %}
 </section>
+{% endblock %}
+
+{%block nav%}
+            <li><a href="/" class="active">Dominion Randomizer</a></li>
+            <li><a href="saved_sets">Saved Sets</a></li>
+{%endblock%}
+
+{% block js %}
+<script>
+function save_collection(){
+    $("#fungame").val("saving...");
+    $("#fungame").attr("disabled", "disabled");
+    $("#fungame").addClass("disabled");
+    $.post('/save_collection', $("#cards form").serialize(), function(data) {
+        $("#fungame").val("saved");
+        $("#fungame").addClass("saved");
+    });
+    return false;
+}
+$("#cards form").submit(save_collection);
+</script>
 {% endblock %}
