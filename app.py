@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']
 db = SQLAlchemy(app)
 
-_EXPANSIONS = ["Dominion", "Intrigue", "Prosperity", "Seaside",  "Cornucopia", "Alchemy", "Hinterlands", "Dark Ages"]
+_EXPANSIONS = ["Dominion", "Intrigue", "Prosperity", "Seaside",  "Cornucopia", "Alchemy", "Hinterlands"]
 
 
 class Card(db.Model):
