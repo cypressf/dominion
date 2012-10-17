@@ -27,17 +27,25 @@ class Card(db.Model):
 @app.route("/")
 def home():
     expansions = request.args.getlist("expansion")
+
     if not expansions:
         return render_template('home.html', all_expansions = _EXPANSIONS)
-    
+
     # get a random number of cards for each expansion
     ran = constrained_random(len(expansions), 10)
     cards = {}
     for i, e in enumerate(expansions):
+        # don't do anything if there are no cards
         if not ran[i]:
             continue
 
         cards[e] = []
+
+        # if the cards are from prosperity, select 
+        # whether or not playing with Colony and Platinum
+        if e == "Prosperity" and random.randint(1,10) <= ran[i]:
+            cards[e] = ["Platinum", "Colony"]
+
         card_query = Card.query.filter_by(expansion=e).order_by(func.random()).limit(ran[i])
         
         for card in card_query:
