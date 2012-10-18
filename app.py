@@ -4,7 +4,7 @@ from urlparse import urlparse, urljoin
 from sqlalchemy.sql.expression import func, select
 import os
 import random
-
+import string
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']
@@ -62,7 +62,8 @@ def home():
         for card in card_query:
             cards[e].append(card.name)
 
-    return render_template('home.html', cards = cards, expansions=expansions, all_expansions = _EXPANSIONS)
+    rand = "".join([random.choice(string.letters + string.digits) for i in xrange(3)] )
+    return render_template('home.html', cards = cards, expansions=expansions, all_expansions = _EXPANSIONS, rand=rand)
 
 @app.route("/save_collection", methods=['POST'])
 def save_collection():

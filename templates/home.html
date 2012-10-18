@@ -2,11 +2,12 @@
 
 {% block content %}
 <section id="form">
-    <form method="GET" action="">
+    <form method="GET" action="#cards">
         {% for e in all_expansions %}
         <label><input type="checkbox" name="expansion" value="{{ e }}"{% if e in expansions %} checked{% endif %}> {{ e }}</label>
         {% endfor %}
-        <input type="submit" value="Randomize!">
+        <input type="hidden" name="r" value="{{ rand }}">
+        <input type="submit" value="Randomize!" id="randomize">
     </form>
 </section>
 
@@ -42,7 +43,7 @@
 
 {% block js %}
 <script>
-function save_collection(){
+function save_collection() {
     $("#fungame").val("saving...");
     $("#fungame").attr("disabled", "disabled");
     $("#fungame").addClass("disabled");
@@ -52,6 +53,21 @@ function save_collection(){
     });
     return false;
 }
+
+// TODO: randomize ajax query, should get random
+// assortment of cards in json (need to create a function)
+// function randomize() {
+//     $("#randomize").val("shuffling...");
+//     $("#randomize").attr("disabled", "disabled");
+//     $("#randomize").addClass("disabled");
+//     $.post('/save_collection', $("#cards form").serialize(), function(data) {
+//         $("#randomize").removeAttr("disabled");
+//         $("#randomize").removeClass("disabled");
+//         $("#fungame").val("Randomize!");
+//     });
+//     return false;
+// }
+// $("#form form").submit(randomize);
 $("#cards form").submit(save_collection);
 </script>
 {% endblock %}
