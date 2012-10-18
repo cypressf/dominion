@@ -4,6 +4,41 @@ body {
     margin:0;
 }
 
+header, footer {
+    font-weight:100;
+    margin:0;
+}
+
+header a, footer a{
+    color:#535a9e;
+}
+
+header ul {
+    font-size:1.5em;
+    font-weight:100;
+    list-style:none;
+    width:100%;
+    height:3em;
+    margin:0 0 1em 0;
+}
+
+header li {
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+header li a {
+    margin:0;
+    display:block;
+    line-height:1em;
+    padding:1em;
+    text-decoration:none;
+}
+header li a.active {
+    text-decoration:underline;
+}
+
 #content {
     padding:0 2em;
 }
@@ -112,40 +147,7 @@ input[type=submit] {
     background:#1f26a7;
     box-shadow:0px 0px 10px #000 inset;
 }
-header, footer {
-    font-weight:100;
-    margin:0;
-}
 
-header a, footer a{
-    color:#535a9e;
-}
-
-header ul {
-    font-size:1.5em;
-    font-weight:100;
-    list-style:none;
-    width:100%;
-    height:3em;
-    margin:0 0 1em 0;
-}
-
-header li {
-    float:left;
-    margin:0;
-    padding:0;
-}
-
-header li a {
-    margin:0;
-    display:block;
-    line-height:1em;
-    padding:1em;
-    text-decoration:none;
-}
-header li a.active {
-    text-decoration:underline;
-}
 
 footer{
     clear:both;
@@ -153,4 +155,34 @@ footer{
 
 footer p {
     padding: 1em;
+}
+
+@media screen and (max-width: 32em) {
+    header ul {
+        font-size:1em;
+        height:6em;
+        padding:0;
+    }
+    header ul li {
+        float:none;
+    }
+    header ul li a {
+        border-bottom:1px solid;
+    }
+    section#form, section#cards, #cards .expansion {
+        float:none;
+        width:auto;
+    }
+
+    #form form {
+        margin:0;
+    }
+
+    #cards .expansion {
+        margin:1em 0;
+    }
+
+    #cards input {
+        width:100%;
+    }
 }
