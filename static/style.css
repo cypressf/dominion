@@ -1,51 +1,17 @@
 body {
     font-family:sans-serif;
     padding:0;
-    margin:0;
-}
-
-header, footer {
-    font-weight:100;
-    margin:0;
-}
-
-header a, footer a{
-    color:#535a9e;
-}
-
-header ul {
-    font-size:1.5em;
-    font-weight:100;
-    list-style:none;
-    width:100%;
-    height:3em;
-    margin:0 0 1em 0;
-}
-
-header li {
-    float:left;
-    margin:0;
-    padding:0;
-}
-
-header li a {
-    margin:0;
-    display:block;
-    line-height:1em;
-    padding:1em;
-    text-decoration:none;
-}
-header li a.active {
-    text-decoration:underline;
-}
-
-#content {
-    padding:0 2em;
+    margin-top:2em;
+    margin-left:2em;
 }
 
 #form {
     float:left;
     width:10em;
+}
+
+#cards {
+    margin:0;
 }
 
 #cards h1 {
@@ -62,16 +28,13 @@ header li a.active {
     padding:0.3em;
 }
 
-#cards form {
-
-}
-
 #cards .expansion {
     width:10em;
     float:left;
     padding:0.5em;
-    margin:0.5em;
-    border:1px solid;
+    margin-right:0.5em;
+    margin-bottom:0.5em;
+    border:1px solid #d5d5d5;
 }
 
 #form form{
@@ -96,41 +59,6 @@ input[type=submit] {
     cursor:pointer;
 }
 
-#cards input[type=submit].disabled,
-#cards input[type=submit].disabled:hover,
-#cards input[type=submit].disabled:active {
-    box-shadow:none;
-    background:#cecece;
-    cursor:default;
-}
-
-#cards input[type=submit].disabled.saved,
-#cards input[type=submit].disabled.saved:hover,
-#cards input[type=submit].disabled.saved:active {
-    box-shadow:none;
-    background:#b2f7b4;
-    cursor:default;
-}
-
-#cards input[type=submit] {
-    background:#fafe9b;
-}
-
-#cards input[type=submit]:hover {
-    background:#fff49a;
-    box-shadow:0px 0px 5px #8a8554 inset;
-
-}
-
-#cards input[type=submit]:active {
-    background:#ffe67c;
-    box-shadow:0px 0px 10px #6c6842 inset;
-
-}
-
-#cards input[type=submit] {
-    background:#fafe9b;
-}
 
 #form input[type=submit] {
     width:100%;
@@ -148,30 +76,28 @@ input[type=submit] {
     box-shadow:0px 0px 10px #000 inset;
 }
 
-
-footer{
-    clear:both;
-}
-
-footer p {
-    padding: 1em;
-}
-
 @media screen and (max-width: 32em) {
-    header ul {
-        font-size:1em;
-        height:6em;
-        padding:0;
-    }
-    header ul li {
-        float:none;
-    }
-    header ul li a {
-        border-bottom:1px solid;
-    }
     section#form, section#cards, #cards .expansion {
         float:none;
         width:auto;
+    }
+
+    * {
+        border-radius:0!important;
+    }
+    #form label {
+        margin:0;
+        border:none;
+        border-bottom:1px solid #d5d5d5;
+    }
+
+    #form input[type=submit] {
+        margin:0;
+        border:none;
+    }
+
+    body {
+        margin:0;
     }
 
     #form form {
@@ -179,10 +105,27 @@ footer p {
     }
 
     #cards .expansion {
-        margin:1em 0;
+        margin:0 0 0.5em 0;
+        padding:0;
+        border:none;
+
     }
 
-    #cards input {
-        width:100%;
+    #cards .expansion h1 {
+        padding:0.25em 1em;
+        font-size:1em;
+        margin:0;
+        background: #d1d1d1; /* Old browsers */
+        background: -moz-linear-gradient(top, #d1d1d1 0%, #e5e5e5 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d1d1d1), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #d1d1d1 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #d1d1d1 0%,#e5e5e5 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #d1d1d1 0%,#e5e5e5 100%); /* IE10+ */
+        background: linear-gradient(to bottom, #d1d1d1 0%,#e5e5e5 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d1d1d1', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+    }
+
+    #cards .expansion ul {
+        margin-left:1em;
     }
 }

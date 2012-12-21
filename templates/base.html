@@ -9,23 +9,6 @@
     {% endblock %}
 </head>
 <body>
-    <header>
-    <nav>
-        <ul>
-            {%block nav %}{%endblock %}
-        </ul>
-    </nav>
-    </header>
-    <div id="content">
     {% block content %}{% endblock %}
-    <script src="{{ url_for('static', filename='jq.js') }}"></script>
-    {% block js %}{% endblock %}
-    </div>
-
-    <footer>
-    {% block footer %}
-    <p>If there are problems, you should email me at <a href="mailto:iamcypress@gmail.com">iamcypress@gmail.com</a></p>
-    {% endblock %}
-    </footer>
 </body>
 </html>
