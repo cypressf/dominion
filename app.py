@@ -60,7 +60,8 @@ def home():
 
     if not expansions:
         expansions_cookie = request.cookies.get('expansions')
-        expansions = expansions_cookie.split(" ")
+        if expansions_cookie:
+            expansions = expansions_cookie.split(" ")
 
     cards = get_random_cards(expansions)
 
@@ -122,7 +123,9 @@ def get_random_cards(expansions):
             }
     """
     expansions = validate_expansions(expansions)
-
+    if not expansions:
+        return False
+    
     # get a random number of cards for each expansion
     ran = constrained_random(len(expansions), 10)
     cards = {}
