@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, url_for
+from flask import Flask, request, redirect, render_template, url_for, make_response
 from flask.ext.sqlalchemy import SQLAlchemy
 from urlparse import urlparse, urljoin
 from sqlalchemy.sql.expression import func, select
@@ -59,9 +59,13 @@ def home():
     expansions = request.args.getlist("expansion")
 
     if not expansions:
-        return render_template('home.html', all_expansions = _EXPANSIONS)
+        expansions_cookie = request.cookies.get('expansions')
+        expansions = expansions_cookie.split(" ")
 
     cards = get_random_cards(expansions)
+
+    if not cards:
+        return render_template('home.html', all_expansions = _EXPANSIONS)
 
     # this is a hack. in order to direct the user's attention to the
     # randomized cards, for small screens, the action of the form points to #cards
@@ -69,7 +73,13 @@ def home():
     # is put in the url. We use this random string in the template by placing it
     # in the form as <input type="hidden">
     rand = "".join([random.choice(string.letters + string.digits) for i in xrange(3)] )
-    return render_template('home.html', cards = cards, expansions=expansions, all_expansions = _EXPANSIONS, rand=rand)
+    resp = make_response(render_template('home.html', cards = cards, expansions=expansions, all_expansions = _EXPANSIONS, rand=rand))
+    
+    # put the selected expansions in a cookie
+    expansions_cookie = " ".join(expansions)
+    resp.set_cookie('expansions', expansions_cookie)
+
+    return resp
 
 @app.route("/save_collection", methods=['POST'])
 def save_collection():
@@ -111,12 +121,13 @@ def get_random_cards(expansions):
                 "Intrigue": [card5, card6, card7, card8, card9, card10]
             }
     """
+    expansions = validate_expansions(expansions)
 
     # get a random number of cards for each expansion
     ran = constrained_random(len(expansions), 10)
     cards = {}
     for i, e in enumerate(expansions):
-        # don't do anything if there are no cards
+        # don't do anything if there are no cards to be delt
         if not ran[i]:
             continue
 
@@ -134,6 +145,21 @@ def get_random_cards(expansions):
 
     return cards
 
+def validate_expansions(expansions):
+    """
+    Given a list of expansion names, return a list of expansion names
+    with all invalid expansion names removed.
+
+    e.g.
+    input: ["Prosperity", "Intrigue", "Poop"]
+    output: ["Prosperity", "Intrigue"]
+
+    input: "alksjdflkajs"
+    output: []
+    """
+    assert isinstance(expansions, list)
+    valid_expansions = [e for e in expansions if e in _EXPANSIONS]
+    return valid_expansions
 
 
 # TODO: combine constrained_random and constrained_sum_sample_pos
