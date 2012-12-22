@@ -7,7 +7,6 @@
         {% for e in all_expansions %}
         <label><input type="checkbox" name="expansion" value="{{ e }}"{% if e in expansions %} checked{% endif %}> {{ e }}</label>
         {% endfor %}
-        <input type="hidden" name="r" value="{{ rand }}">
         <input type="submit" value="Randomize!" id="randomize">
     </form>
 </section>

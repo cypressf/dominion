@@ -16,6 +16,7 @@ body {
 
 #cards h1 {
     margin:0;
+    text-transform:capitalize;
 }
 
 #cards ul {
@@ -128,4 +129,8 @@ input[type=submit] {
     #cards .expansion ul {
         margin-left:1em;
     }
+}
+
+.hidden {
+    display:none;
 }

@@ -125,7 +125,7 @@ def get_random_cards(expansions):
     expansions = validate_expansions(expansions)
     if not expansions:
         return False
-    
+
     # get a random number of cards for each expansion
     ran = constrained_random(len(expansions), 10)
     cards = {}
@@ -192,7 +192,6 @@ def make_collection_from_strings(card_strings):
     
     c = Collection(cards)
     db.session.commit()
-
 
 if __name__ == "__main__":
     # Bind to PORT if defined, otherwise default to 5000.

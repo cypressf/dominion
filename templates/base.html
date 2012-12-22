@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html manifest="{{ url_for('static', filename='cache.manifest') }}">
 <head>
     {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>{% block title %}Dominion Randomizer{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
     {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='randomizer.js') }}"></script>
 </body>
 </html>
