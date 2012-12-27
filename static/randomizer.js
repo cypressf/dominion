@@ -10,6 +10,9 @@
         /*
         Get all the cards in jquery form, and update the local database
         */
+        if (!navigator.onLine) {
+            return;
+        }
         var req = _.http_request();
 
         save_cards_locally = function() {
@@ -267,6 +270,6 @@
 
     randomizer.set_cookie = set_previously_used_expansions;
     randomizer.get_cookie = select_previously_used_expansions;
-
+    randomizer.sync_db = update_local_cards;
     window.randomizer = randomizer;
 })()
