@@ -4,6 +4,7 @@
 
     var cards;
     var javascript_activated = false;
+    var form = document.querySelector("#form form")
 
     function update_local_cards() {
         /*
@@ -44,14 +45,25 @@
         return cards;
     }
 
-    function update_page(e){
+    function randomize_clicked(e) {
         /*
         Update the page when the form is submitted.
         */
         e.preventDefault();
+        update_page();
+    }
+
+    function update_page(){
+        /*
+        Update the page with expansions selected
+        */
 
         // get the names of expansions that are checked
-        var expansions = get_expansions(e.target);
+        var expansions = get_expansions();
+
+        // store the expansions in a cookie, so remember on next page load
+        set_previously_used_expansions(expansions);
+
         _.debug(expansions);
         var random_cards = get_random_cards(expansions);
         put_in_dom(random_cards);
@@ -64,7 +76,6 @@
         Put the results of randomization into the DOM
         */
         var i;
-        var form = document.querySelector("#form");
         dom_string = "";
         for (expansion in cards) {
             dom_string += "<div id=\"" + expansion + "\" class=\"expansion\">";
@@ -84,7 +95,35 @@
         }
     }
 
-    function get_expansions(form) {
+    function set_previously_used_expansions() {
+        var cookie_string = get_expansions().join(" ");
+        _.set_cookie("expansions", cookie_string);
+    }
+
+    function select_previously_used_expansions() {
+        var cookie_string;
+        if (cookie_string = _.get_cookie("expansions")) {
+            var previous_expansions = cookie_string.split(" ");
+            select_expansions(previous_expansions);
+        }
+    }
+
+    function select_expansions(expansions) {
+        var all_expansions = document.querySelectorAll("input[name='expansion']");
+        for (var j = 0; j < all_expansions.length; j++ ) {
+            all_expansions[j].checked = false;
+        }
+        for (var j = 0; j < all_expansions.length; j++ ) {
+            for (var i = 0; i < expansions.length; i++) {
+                if (expansions[i] === all_expansions[j].value) {
+                    all_expansions[j].checked = true;
+                }
+            }
+        }
+
+    }
+
+    function get_expansions() {
         /*
         Given the DOM form, returns a list of checked expansion names.
         */
@@ -207,21 +246,27 @@
         if (javascript_activated) {
             return;
         }
-        var form = document.querySelector("form");
-        form.addEventListener("submit", update_page);
+        form.addEventListener("submit", randomize_clicked);
         javascript_activated = true;
     }
 
     // load the cards from the server-side database (async)
     update_local_cards();
+    select_previously_used_expansions();
 
     // if there are already cards in the local database,
     // load them into the app and activate js randomization
     if (localStorage.cards) {
         get_local_cards();
         activate_javascript();
+        if (_.get_cookie("expansions")){
+            update_page();
+        }
         _.debug(cards);
     }
+
+    randomizer.set_cookie = set_previously_used_expansions;
+    randomizer.get_cookie = select_previously_used_expansions;
 
     window.randomizer = randomizer;
 })()

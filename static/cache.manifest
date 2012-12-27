@@ -1,6 +1,7 @@
 CACHE MANIFEST
-#v8
-SETTINGS:
-prefer-online
+#v9
+
+/static/*
+
 NETWORK:
 *
