@@ -14,9 +14,6 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']
 db = SQLAlchemy(app)
 
-_EXPANSIONS = ["Dominion", "Intrigue", "Prosperity", "Seaside",  "Cornucopia", "Alchemy", "Hinterlands"]
-
-
 ##################
 # Database classes
 # TODO: make this a seperate module and import it
@@ -63,8 +60,8 @@ class Collection(db.Model):
 # Routes
 ################
 
-@app.route("/api/get_expansions")
-def api_get_expansions():
+@app.route("/api/get_all_cards")
+def api_get_all_cards():
     """
     Return a list of expansions, and their cards, in json form.
 
@@ -97,17 +94,13 @@ def home():
     Display the form that allows someone to select expansions.
     If GET["expansion"] is part of the request, display a list of randomized cards.
     """
-    expansions = request.args.getlist("expansion")
-
-    if not expansions:
-        expansions_cookie = request.cookies.get('expansions')
-        if expansions_cookie:
-            expansions = expansions_cookie.split(" ")
-
-    # cards = get_random_cards(expansions)
-
-    # if not cards:
-    return render_template('home.html', all_expansions = _EXPANSIONS)
+    expansions = get_expansions(request)
+    cards = get_random_cards(expansions)
+    all_expansions = Expansion.query.all()
+    all_expansions = [e.name for e in all_expansions]
+    
+    if not cards:
+        return render_template('home.html', all_expansions = all_expansions)
 
     # this is a hack. in order to direct the user's attention to the
     # randomized cards, for small screens, the action of the form points to #cards
@@ -115,7 +108,7 @@ def home():
     # is put in the url. We use this random string in the template by placing it
     # in the form as <input type="hidden">
     rand = "".join([random.choice(string.letters + string.digits) for i in xrange(3)] )
-    resp = make_response(render_template('home.html', cards = cards, expansions=expansions, all_expansions = _EXPANSIONS, rand=rand))
+    resp = make_response(render_template('home.html', cards = cards, expansions=expansions, all_expansions = all_expansions, rand=rand))
     
     # put the selected expansions in a cookie
     expansions_cookie = " ".join(expansions)
@@ -151,6 +144,23 @@ def sets():
 # Helper functions
 ###################
 
+def get_expansions(request):
+    """
+    Given a request, return a list of expansion names.
+    """
+    print "getting expansions"
+    expansions = request.args.getlist("expansion")
+
+    if not expansions:
+        print "getting from cookie"
+        expansions_cookie = request.cookies.get('expansions')
+        if expansions_cookie:
+            expansions = expansions_cookie.split(" ")
+
+    if expansions: return expansions
+    return []
+
+
 def get_random_cards(expansions):
     """
     Given a list of expansion names, return a dictionary with those expansion
@@ -182,7 +192,8 @@ def get_random_cards(expansions):
         if e == "Prosperity" and random.randint(1,10) <= ran[i]:
             cards[e] = ["Platinum", "Colony"]
 
-        card_query = Card.query.filter_by(expansion=e).order_by(func.random()).limit(ran[i])
+        expansion = Expansion.query.filter_by(name=e).first()
+        card_query = Card.query.filter_by(expansion=expansion).order_by(func.random()).limit(ran[i])
         
         for card in card_query:
             cards[e].append(card.name)
@@ -201,8 +212,11 @@ def validate_expansions(expansions):
     input: "alksjdflkajs"
     output: []
     """
+    expansion_query = Expansion.query.all()
+    all_expansions = [e.name for e in expansion_query]
     assert isinstance(expansions, list)
-    valid_expansions = [e for e in expansions if e in _EXPANSIONS]
+
+    valid_expansions = [e for e in expansions if e in all_expansions]
     return valid_expansions
 
 
