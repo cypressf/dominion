@@ -1,7 +1,9 @@
 CACHE MANIFEST
 #v9
 
-/static/*
+/static/cypress_lib.js
+/static/randomizer.js
+/static/style.css
 
 NETWORK:
 *
