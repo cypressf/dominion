@@ -1,215 +1,44 @@
-// Cypress Library
-(function(){
-    // object we'll store our functions in
-    var library = {};
+var cards;
+var javascript_activated = false;
 
-    library.print = function(s) {
-        console.log(s);
-    };
+function update_local_cards() {
+    /*
+    Get all the cards in jquery form, and update the local database
+    */
+    var req = _.http_request();
 
-    var debug_flag = true;
-
-    library.debug = function(s) {
-        if ( debug_flag ) {
-            console.debug(s);
+    save_cards_locally = function() {
+        if (req.readyState === 4) {
+            // the response is received. all is well.
+            if (req.status === 200) {
+                // perfect!
+                _.debug("recevied cards from server. syncing local database");
+                // put them in local storage
+                localStorage.cards = req.responseText;
+                // also get the cards from local storage, and put them in JSON to use in the app
+                get_local_cards();
+                activate_javascript();
+            }
+            else {
+                _.debug("problem...." + req.status);
+            }
         }
     }
 
-    library.set_debug = function(bool) {
-        debug_flag = bool;
-    }
+    req.onreadystatechange = save_cards_locally;
+    req.open('GET', '/api/get_expansions');
+    req.send(null);
+}
 
-    library.get_debug = function() {
-        return debug_flag;
-    }
-
-    // put it in the global namespace
-    window._ = library;
-})();
-
-var Dominion = 
-[{name: "Cellar"},
-{name: "Chapel"},
-{name: "Moat"},
-{name: "Chancellor"},
-{name: "Village"},
-{name: "Woodcutter"},
-{name: "Workshop"},
-{name: "Bureaucrat"},
-{name: "Feast"},
-{name: "Gardens"},
-{name: "Militia"},
-{name: "Moneylender"},
-{name: "Remodel"},
-{name: "Smithy"},
-{name: "Spy"},
-{name: "Thief"},
-{name: "Throne Room"},
-{name: "Council Room"},
-{name: "Festival"},
-{name: "Laboratory"},
-{name: "Library"},
-{name: "Market"},
-{name: "Mine"},
-{name: "Witch"},
-{name: "Adventurer"}];
-
-
-var Intrigue =
-[{name: "Courtyard"},
-{name: "Pawn"},
-{name: "Secret Chamber"},
-{name: "Great Hall"},
-{name: "Masquerade"},
-{name: "Shanty Town"},
-{name: "Steward"},
-{name: "Swindler"},
-{name: "Wishing Well"},
-{name: "Baron"},
-{name: "Bridge"},
-{name: "Conspirator"},
-{name: "Coppersmith"},
-{name: "Ironworks"},
-{name: "Mining Village"},
-{name: "Scout"},
-{name: "Duke"},
-{name: "Minion"},
-{name: "Saboteur"},
-{name: "Torturer"},
-{name: "Trading Post"},
-{name: "Tribute"},
-{name: "Upgrade"},
-{name: "Harem"},
-{name: "Nobles"}];
-
-
-var Prosperity =
-[{name: "Loan"},
-{name: "Trade Route"},
-{name: "Watchtower"},
-{name: "Bishop"},
-{name: "Monument"},
-{name: "Quarry"},
-{name: "Talisman"},
-{name: "Worker's Village"},
-{name: "City"},
-{name: "Contraband"},
-{name: "Counting House"},
-{name: "Mint"},
-{name: "Mountebank"},
-{name: "Rabble"},
-{name: "Royal Seal"},
-{name: "Vault"},
-{name: "Venture"},
-{name: "Goons"},
-{name: "Grand Market"},
-{name: "Hoard"},
-{name: "Bank"},
-{name: "Expand"},
-{name: "Forge"},
-{name: "King's Court"},
-{name: "Peddler"}];
-
-
-var Seaside =
-[{name: "Embargo"},
-{name: "Haven"},
-{name: "Lighthouse"},
-{name: "Native Village"},
-{name: "Pearl Diver"},
-{name: "Ambassador"},
-{name: "Fishing Village"},
-{name: "Lookout"},
-{name: "Smugglers"},
-{name: "Warehouse"},
-{name: "Caravan"},
-{name: "Cutpurse"},
-{name: "Island"},
-{name: "Navigator"},
-{name: "Pirate Ship"},
-{name: "Salvager"},
-{name: "Sea Hag"},
-{name: "Treasure Map"},
-{name: "Bazaar"},
-{name: "Explorer"},
-{name: "Ghost Ship"},
-{name: "Merchant Ship"},
-{name: "Outpost"},
-{name: "Tactician"},
-{name: "Treasury"},
-{name: "Wharf"}];
-
-
-var Cornucopia = 
-[{name: "Hamlet"},
-{name: "Fortune Teller"},
-{name: "Menagerie"},
-{name: "Farming Village"},
-{name: "Horse Traders"},
-{name: "Remake"},
-{name: "Tournament"},
-{name: "Young Witch"},
-{name: "Harvest"},
-{name: "Horn of Plenty"},
-{name: "Hunting Party"},
-{name: "Jester"},
-{name: "Fairgrounds"}];
-
-
-var Alchemy =
-[{name: "Transmute"},
-{name: "Apothecary"},
-{name: "Herbalist"},
-{name: "Scrying Pool"},
-{name: "University"},
-{name: "Alchemist"},
-{name: "Familiar"},
-{name: "Philosopher's Stone"},
-{name: "Golem"},
-{name: "Apprentice"},
-{name: "Possession"},
-{name: "Vineyard"}];
-
-
-var Hinterlands =
-[{name: "Crossroads"},
-{name: "Duchess"},
-{name: "Fool's Gold"},
-{name: "Develop"},
-{name: "Oasis"},
-{name: "Oracle"},
-{name: "Scheme"},
-{name: "Tunnel"},
-{name: "Jack of All Trades"},
-{name: "Noble Brigand"},
-{name: "Nomad Camp"},
-{name: "Silk Road"},
-{name: "Spice Merchant"},
-{name: "Trader"},
-{name: "Cache"},
-{name: "Cartographer"},
-{name: "Embassy"},
-{name: "Haggler"},
-{name: "Highway"},
-{name: "Ill-Gotten Gains"},
-{name: "Inn"},
-{name: "Mandarin"},
-{name: "Margrave"},
-{name: "Stables"},
-{name: "Border Village"},
-{name: "Farmland"}];
-
-var cards = {dominion: Dominion,
-        hinterlands: Hinterlands,
-        alchemy: Alchemy,
-        intrigue: Intrigue,
-        seaside: Seaside,
-        cornucopia: Cornucopia,
-        prosperity: Prosperity};
-
-
-var form = document.querySelector("form");
-form.addEventListener("submit", update_page);
+function get_local_cards() {
+    /*
+        Take the cards stored in the local database and put them in JSON
+        at the global level to use.
+    */
+    _.debug("loading cards from local database");
+    cards = JSON.parse(localStorage.cards);
+    return cards;
+}
 
 function update_page(e){
     /*
@@ -222,6 +51,8 @@ function update_page(e){
     _.debug(expansions);
     var random_cards = get_random_cards(expansions);
     put_in_dom(random_cards);
+    window.location.hash = "randomize";
+    document.querySelector("#randomize").scrollIntoView();
 }
 
 function put_in_dom(cards) {
@@ -258,7 +89,7 @@ function get_expansions(form) {
     var expansions = [];
     for(var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-            expansions.push(checkboxes[i].value.toLowerCase());
+            expansions.push(checkboxes[i].value);
         }
     }
     return expansions;
@@ -301,7 +132,7 @@ function get_random_cards(expansions){
 
         // if the cards are from prosperity, select 
         // whether or not playing with Colony and Platinum
-        if (expansion === "prosperity" && rand_int(1,10) <= ran[i]) {
+        if (expansion === "Prosperity" && rand_int(1,10) <= ran[i]) {
             random_cards[expansion].push({name:"Platinum"});
             random_cards[expansion].push({name:"Colony"});
         }
@@ -363,3 +194,28 @@ function rand_int(min, max) {
 function compare_numbers(a,b) {
   return a - b;
 }
+
+function activate_javascript() {
+    /*
+        If it hasn't been activated already, attach the event listener to the
+        form to activate client-side randomization
+    */
+    if (javascript_activated) {
+        return;
+    }
+    var form = document.querySelector("form");
+    form.addEventListener("submit", update_page);
+    javascript_activated = true;
+}
+
+// load the cards from the server-side database (async)
+update_local_cards();
+
+// if there are already cards in the local database,
+// load them into the app and activate js randomization
+if (localStorage.cards) {
+    get_local_cards();
+    activate_javascript();
+    _.debug(cards);
+}
+
