@@ -1,4 +1,6 @@
 CACHE MANIFEST
-#v4
-/static/randomizer.js
-/static/style.css
+#v8
+SETTINGS:
+prefer-online
+NETWORK:
+*
