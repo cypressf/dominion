@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, url_for, make_response
+from flask import Flask, request, redirect, render_template, url_for, make_response, jsonify
 from flask.ext.sqlalchemy import SQLAlchemy
 from urlparse import urlparse, urljoin
 from sqlalchemy.sql.expression import func, select
@@ -27,10 +27,22 @@ collections = db.Table('collections',
     db.Column('collection_id', db.Integer, db.ForeignKey('collection.id'))
 )
 
+class Expansion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    cards = db.relationship('Card', backref='expansion', lazy='dynamic')
+
+    def __init__(self, name):
+        self.name = name
+
+    def __repr__(self):
+        return '<Expansion %r>' % self.name
+
 class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
-    expansion = db.Column(db.String(80), unique=False)
+
+    expansion_id = db.Column(db.Integer, db.ForeignKey('expansion.id'))
 
     def __init__(self, name, expansion):
         self.name = name
@@ -50,6 +62,35 @@ class Collection(db.Model):
 ################
 # Routes
 ################
+
+@app.route("/api/get_expansions")
+def api_get_expansions():
+    """
+    Return a list of expansions, and their cards, in json form.
+
+    e.g.
+    {
+        Dominion: [{name: "Cellar"},
+        {name: "Chapel"},
+        {name: "Moat"}, ... ],
+
+        Intrigue: [{name: "Courtyard"},
+        {name: "Pawn"},
+        {name: "Secret Chamber"}, ... ],
+
+        ...
+    }
+    """
+    expansions = {}
+    expansion_query = Expansion.query.all()
+    for e in expansion_query:
+        # put the names of the cards in a list
+        card_names = [{"name": c.name} for c in e.cards]
+        # store this list as the value under the expansion's name
+        # in the expansions dictionary
+        expansions[e.name] = card_names
+    return jsonify(expansions)
+
 @app.route("/")
 def home():
     """
@@ -63,10 +104,10 @@ def home():
         if expansions_cookie:
             expansions = expansions_cookie.split(" ")
 
-    cards = get_random_cards(expansions)
+    # cards = get_random_cards(expansions)
 
-    if not cards:
-        return render_template('home.html', all_expansions = _EXPANSIONS)
+    # if not cards:
+    return render_template('home.html', all_expansions = _EXPANSIONS)
 
     # this is a hack. in order to direct the user's attention to the
     # randomized cards, for small screens, the action of the form points to #cards
