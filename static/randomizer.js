@@ -34,7 +34,7 @@
         }
 
         req.onreadystatechange = save_cards_locally;
-        req.open('GET', '/api/get_expansions');
+        req.open('GET', '/api/get_all_cards');
         req.send(null);
     }
 
