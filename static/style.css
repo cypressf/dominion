@@ -64,6 +64,7 @@ html, body {
     font-size:1em;
     line-height:1;
     margin:1em;
+    padding:0;
 }
 
 input[type=submit] {
