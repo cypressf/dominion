@@ -5,7 +5,8 @@
 <section id="form">
     <form method="GET" action="#randomize">
         {% for e in all_expansions %}
-        <label><input type="checkbox" name="expansion" value="{{ e }}"{% if e in expansions %} checked{% endif %}> {{ e }}</label>
+        <input type="checkbox" name="expansion" value="{{ e }}"{% if e in expansions %} checked{% endif %} id="check_{{e}}">
+        <label for="check_{{e}}">{{ e }}</label>
         {% endfor %}
         <input type="submit" value="Randomize!" id="randomize">
     </form>
