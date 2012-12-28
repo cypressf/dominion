@@ -1,9 +1,5 @@
 CACHE MANIFEST
-#v11
-
-/static/cypress_lib.js
-/static/randomizer.js
-/static/style.css
+#v13
 
 SETTINGS:
 prefer-online
