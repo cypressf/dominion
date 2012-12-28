@@ -52,6 +52,7 @@
         /*
         Update the page when the form is submitted.
         */
+        e.stopPropagation();
         e.preventDefault();
         update_page();
     }
