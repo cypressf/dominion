@@ -179,8 +179,13 @@
             // if the cards are from prosperity, select 
             // whether or not playing with Colony and Platinum
             if (expansion === "Prosperity" && rand_int(1,10) <= ran[i]) {
-                random_cards[expansion].push({name:"Platinum"});
-                random_cards[expansion].push({name:"Colony"});
+                random_cards[expansion].push({name:"Use Platinum and Colony"});
+            }
+
+            // if the cards are from dark ages, select 
+            // whether or not playing with shelters
+            if (expansion === "Dark Ages" && rand_int(1,10) <= ran[i]) {
+                random_cards[expansion].push({name:"Start with shelters"});
             }
         }
 
