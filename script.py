@@ -26,6 +26,50 @@ Dominion = \
 {"name": "Witch"},
 {"name": "Adventurer"}]
 
+Dark_Ages = \
+[{"name": "Black Market"},
+{"name": "Envoy"},
+{"name": "Walled Village"},
+{"name": "Governor"},
+{"name": "Stash"},
+{"name": "Altar"},
+{"name": "Armory"},
+{"name": "Band of Misfits"},
+{"name": "Bandit Camp"},
+{"name": "Beggar"},
+{"name": "Catacombs"},
+{"name": "Count"},
+{"name": "Counterfeit"},
+{"name": "Cultist"},
+{"name": "Death Cart"},
+{"name": "Feodum"},
+{"name": "Forager"},
+{"name": "Fortress"},
+{"name": "Graverobber"},
+{"name": "Hermit"},
+{"name": "Hunting Grounds"},
+{"name": "Ironmonger"},
+{"name": "Junk Dealer"},
+{"name": "Madman"},
+{"name": "Marauder"},
+{"name": "Market Square"},
+{"name": "Mercenary"},
+{"name": "Mystic"},
+{"name": "Pillage"},
+{"name": "Poor House"},
+{"name": "Procession"},
+{"name": "Rats"},
+{"name": "Rebuild"},
+{"name": "Rogue"},
+{"name": "Sage"},
+{"name": "Scavenger"},
+{"name": "Spoils"},
+{"name": "Squire"},
+{"name": "Storeroom"},
+{"name": "Urchin"},
+{"name": "Vagrant"},
+{"name": "Wandering Minstrel"},
+{"name": "Knights"}]
 
 Intrigue = \
 [{"name": "Courtyard"},
@@ -171,20 +215,22 @@ Hinterlands = \
 {"name": "Border Village"},
 {"name": "Farmland"}]
 
-cards = {"Dominion": Dominion,
-        "Hinterlands": Hinterlands,
-        "Alchemy": Alchemy,
-        "Intrigue": Intrigue,
-        "Seaside": Seaside,
-        "Cornucopia": Cornucopia,
-        "Prosperity": Prosperity}
-
+# cards = {"Dominion": Dominion,
+#         "Hinterlands": Hinterlands,
+#         "Alchemy": Alchemy,
+#         "Intrigue": Intrigue,
+#         "Seaside": Seaside,
+#         "Cornucopia": Cornucopia,
+#         "Prosperity": Prosperity,
+#         "Dark Ages": Dark_Ages}
+cards = {"Dark Ages": Dark_Ages}
 def add_expansions():
     for e_name in cards:
         expansion = Expansion(e_name)
         try:
             db.session.add(expansion)
             db.session.commit()
+            print "added expansion %s" % e_name
         except:
             db.session.rollback()
             print "adding %s failed (probably already exists in the database)" % e_name
@@ -203,9 +249,10 @@ def add_cards():
             try:
                 db.session.add(card)
                 db.session.commit()
+                print "added card %s" % c["name"]
             except:
                 db.session.rollback()
-                print "adding card %s failed" % c["name"]
+                print "adding card %s failed (probably already exists in the dabtabase)" % c["name"]
 
 def print_cards(expansion):
     c_query = Card.query.filter_by(expansion = expansion)
@@ -213,5 +260,3 @@ def print_cards(expansion):
         print c
 
 add_cards()
-e = Expansion.query.filter_by(name="Dominion").first()
-print_cards(e)
