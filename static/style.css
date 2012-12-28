@@ -45,6 +45,9 @@ html, body {
     min-height:9em;
 }
 
+#cards .expansion h1 {
+    font-size:1.5em;
+}
 
 #form label {
     display:block;
