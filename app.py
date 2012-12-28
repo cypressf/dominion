@@ -94,27 +94,27 @@ def home():
     Display the form that allows someone to select expansions.
     If GET["expansion"] is part of the request, display a list of randomized cards.
     """
-    expansions = get_expansions(request)
-    cards = get_random_cards(expansions)
+    # expansions = get_expansions(request)
+    # cards = get_random_cards(expansions)
     all_expansions = Expansion.query.all()
     all_expansions = [e.name for e in all_expansions]
     
-    if not cards:
-        return render_template('home.html', all_expansions = all_expansions)
+    # if not cards:
+    return render_template('home.html', all_expansions = all_expansions)
 
     # this is a hack. in order to direct the user's attention to the
     # randomized cards, for small screens, the action of the form points to #cards
     # this has a side effect of caching the page, unless a random string
     # is put in the url. We use this random string in the template by placing it
     # in the form as <input type="hidden">
-    rand = "".join([random.choice(string.letters + string.digits) for i in xrange(3)] )
-    resp = make_response(render_template('home.html', cards = cards, expansions=expansions, all_expansions = all_expansions, rand=rand))
+    # rand = "".join([random.choice(string.letters + string.digits) for i in xrange(3)] )
+    # resp = make_response(render_template('home.html', cards = cards, expansions=expansions, all_expansions = all_expansions, rand=rand))
     
     # put the selected expansions in a cookie
-    expansions_cookie = " ".join(expansions)
-    resp.set_cookie('expansions', expansions_cookie)
+    # expansions_cookie = " ".join(expansions)
+    # resp.set_cookie('expansions', expansions_cookie)
 
-    return resp
+    # return resp
 
 @app.route("/save_collection", methods=['POST'])
 def save_collection():
