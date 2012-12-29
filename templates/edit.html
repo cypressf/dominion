@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block css %}
+<style>
+    body{color:#443008;background:#ebe7e1;font-family: sans-serif;}
+    h1{clear:both;padding-top:1em;}
+    form{
+        float:left;
+        margin:1em;
+        font-size:1em;
+    }
+    label {
+        color:inherit;
+
+    display: block;
+    line-height: 1;
+    font-size: 1em;
+    padding: 0;
+    margin: 1em 0;
+    }
+    input[name=name]{
+        display:block;
+        width:auto;
+        padding:1em;
+        background:inherit;
+        border:none;
+        font:inherit;
+        font-size:1.2em;
+    }
+    input[type=number]{
+        width:4em;
+        background:inherit;
+        color:inherit;
+        float:right;
+        font-size:1em;
+        border:none;
+        font-weight:normal;
+        font-family:sans-serif;
+        padding:0;
+        margin:0;
+        line-height:1;
+    }
+    textarea {
+        width:100%;
+        box-sizing:border-box;
+        height:4em;
+        font:inherit;
+        padding:0.5em;
+    }
+    fieldset label {
+        display:inline-block;
+    }
+    fieldset{
+        border:1px solid #d2b98c;
+        display:inline-block;
+    }
+</style>
+{% endblock %}
+
+
+{% block js %}
+<script src="{{ url_for('static', filename='edit.js') }}"></script>
+{% endblock %}

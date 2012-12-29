@@ -4,7 +4,7 @@
     {% block head %}
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, user-scalable = no">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">{% endblock %}
     <title>{% block title %}Dominion Randomizer{% endblock %}</title>
     {% endblock %}
 </head>
@@ -12,5 +12,6 @@
     {% block content %}{% endblock %}
     <script src="{{ url_for('static', filename='cypress_lib.js') }}"></script>
     <script src="{{ url_for('static', filename='randomizer.js') }}"></script>
+    {% block js %}{% endblock %}
 </body>
 </html>

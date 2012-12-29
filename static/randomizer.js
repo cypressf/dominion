@@ -34,7 +34,7 @@
         }
 
         req.onreadystatechange = save_cards_locally;
-        req.open('GET', '/api/get_all_cards');
+        req.open('GET', '/api/expansions');
         req.send(null);
     }
 
@@ -258,23 +258,36 @@
         javascript_activated = true;
     }
 
-    // load the cards from the server-side database (async)
-    update_local_cards();
-    select_previously_used_expansions();
+    function init() {
+        // load the cards from the server-side database (async)
+        update_local_cards();
+        select_previously_used_expansions();
 
-    // if there are already cards in the local database,
-    // load them into the app and activate js randomization
-    if (localStorage.cards) {
-        get_local_cards();
-        activate_javascript();
-        if (_.get_cookie("expansions")){
-            update_page();
+        // if there are already cards in the local database,
+        // load them into the app and activate js randomization
+        if (localStorage.cards) {
+            get_local_cards();
+            activate_javascript();
+            if (_.get_cookie("expansions")){
+                update_page();
+            }
+            _.debug(cards);
         }
-        _.debug(cards);
     }
 
+    randomizer.init = init;
     randomizer.set_cookie = set_previously_used_expansions;
     randomizer.get_cookie = select_previously_used_expansions;
     randomizer.sync_db = update_local_cards;
+    randomizer.expansions = function() {
+        if (cards) {
+            return cards;
+        }
+        if (cards = get_local_cards()) {
+            return cards;
+        }
+        update_local_cards();
+        return false;
+    }
     window.randomizer = randomizer;
 })()

@@ -13,6 +13,44 @@ import string
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']
 db = SQLAlchemy(app)
+_VALID_ARGS = ["min_cost_treasure",
+               "max_cost_treasure",
+               "min_cost_potion",
+               "max_cost_potions",
+               "min_plus_actions",
+               "max_plus_actions",
+               "min_plus_treasure",
+               "max_plus_treasure",
+               "min_plus_cards",
+               "max_plus_cards",
+               "min_plus_buys",
+               "max_plus_buys",
+               "min_victory_points",
+               "max_victory_points",
+               "min_trashes",
+               "max_trashes",
+               "is_attack",
+               "is_reaction",
+               "min_treasure",
+               "max_treasure",
+               "min_victory_points",
+               "max_victory_points"]
+
+_VALID_CARD_PARAMS = [
+                "name",
+                "cost_treasure",
+                "cost_potions",
+                "description",
+                "plus_actions",
+                "plus_cards",
+                "plus_treasure",
+                "plus_buys",
+                "trashes",
+                "is_attack",
+                "is_reaction",
+                "treasure",
+                "victory_points",
+                "expansion_id"]
 
 ##################
 # Database classes
@@ -38,6 +76,19 @@ class Expansion(db.Model):
 class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
+    cost_treasure = db.Column(db.Integer)
+    cost_potions = db.Column(db.Integer)
+    description = db.Column(db.String(500))
+
+    plus_actions = db.Column(db.Integer)
+    plus_cards = db.Column(db.Integer)
+    plus_treasure = db.Column(db.Integer)
+    plus_buys = db.Column(db.Integer)
+    trashes = db.Column(db.Integer)
+    is_attack = db.Column(db.Boolean)
+    is_reaction = db.Column(db.Boolean)
+    treasure = db.Column(db.Integer)
+    victory_points = db.Column(db.Integer)
 
     expansion_id = db.Column(db.Integer, db.ForeignKey('expansion.id'))
 
@@ -60,20 +111,29 @@ class Collection(db.Model):
 # Routes
 ################
 
-@app.route("/api/get_all_cards")
-def api_get_all_cards():
+@app.route("/api/")
+def api():
+    """
+    Return instructions on how to use the api
+    """
+    pass
+
+@app.route("/api/expansions")
+def api_expansions():
     """
     Return a list of expansions, and their cards, in json form.
 
     e.g.
     {
-        Dominion: [{name: "Cellar"},
-        {name: "Chapel"},
-        {name: "Moat"}, ... ],
+        Dominion:
+        ["Cellar": {name: "Cellar"},
+        "Chapel": {name: "Chapel"},
+        "Moat": {name: "Moat"}, ... ],
 
-        Intrigue: [{name: "Courtyard"},
-        {name: "Pawn"},
-        {name: "Secret Chamber"}, ... ],
+        Intrigue:
+        ["Courtyard": {name: "Courtyard"},
+        "Pawn": {name: "Pawn"},
+        "Secret Chamber": {name: "Secret Chamber"}, ... ],
 
         ...
     }
@@ -83,10 +143,148 @@ def api_get_all_cards():
     for e in expansion_query:
         # put the names of the cards in a list
         card_names = [{"name": c.name} for c in e.cards]
+        card_dict = {}
+        for card in e.cards:
+            card_dict[card.name] = dict_from_card(card)
+
         # store this list as the value under the expansion's name
         # in the expansions dictionary
-        expansions[e.name] = card_names
+        expansions[e.name] = card_dict
     return jsonify(expansions)
+
+@app.route("/api/cards/")
+def api_cards():
+    """
+    Return a dictionary of cards, in json form.
+
+    e.g.
+        {"Cellar": {name: "Cellar"},
+        "Chapel": {name: "Chapel"},
+        "Moat": {name: "Moat"},
+        "Courtyard": {name: "Courtyard"},
+        "Pawn": {name: "Pawn"},
+        "Secret Chamber": {name: "Secret Chamber"}, ... ]
+
+    This will be more useful when cards contain more
+    information.
+    """
+    sql_parameters = parse_args(request.args)
+    if sql_parameters:
+        try:
+            card_query = Card.query.filter(*sql_parameters)
+        except:
+            db.session.rollback()
+            return jsonify({"error": "something was malformed in your request params"})
+    else:
+        card_query = Card.query.all()
+    
+    card_dict = {}
+    for card in card_query:
+        card_dict[card.name] = dict_from_card(card)
+    return jsonify(card_dict)
+
+@app.route("/api/cards/<id>", methods=['POST', 'GET'])
+def api_card(id):
+    """
+    Return a card matching an id.
+    """
+
+    if request.method == "POST":
+        errors = api_modify_card(id, request)
+        if not errors:
+            return redirect(url_for("api_card", id=id))
+        return errors
+
+    if request.method == "GET":
+        return api_get_card(id)
+
+
+def api_modify_card(id, request):
+    card = get_card(id)
+    if not card:
+        return jsonify({"error": "no cards match"})
+
+    for param in request.form:
+        if param in _VALID_CARD_PARAMS:
+            value = request.form[param]
+            setattr(card, param, value)
+    try:
+        db.session.commit()
+    except:
+        db.session.rollback()
+        return jsonify({"error": "invalid modification parameters"})
+    return False
+
+
+def api_get_card(id):
+    card = get_card(id)
+
+    if card:
+        card_dict = {}
+        card_dict[card.name] = dict_from_card(card)
+        return jsonify(card_dict)
+    else:
+        return jsonify({"error": "no cards match"})
+
+def get_card(id):
+    try:
+        id = int(id)
+        card = Card.query.get(int(id))
+    except:
+        card = None
+
+    return card
+
+def parse_args(args):
+    """
+    Given args from an api request, return a list of parameters to pass to Card.query.filter()
+    """
+    sql_parameters = []
+    args_dict = dict(args)
+    for arg in args_dict:
+        if arg in _VALID_ARGS:
+            if "min_" in arg:
+                arg += " >= " + str(int(args_dict[arg][0]))
+                arg = arg.replace("min_", "")
+            if "max_" in arg:
+                arg += " <= " + str(int(args_dict[arg][0]))
+                arg = arg.replace("max_", "")
+
+            if "is_" in arg:
+                arg += " == " + str(bool(int(args_dict[arg][0])))
+            sql_parameters.append(arg)
+    return sql_parameters
+
+
+
+def dict_from_card(card):
+    """
+    Given a database Card object, return a python dict equivalent.
+    """
+    return {"name": card.name,
+            "id": card.id,
+            "cost_treasure": card.cost_treasure,
+            "cost_potions": card.cost_potions,
+            "description": card.description,
+            "expansion": card.expansion.name,
+            "plus_actions": card.plus_actions,
+            "plus_cards": card.plus_cards,
+            "plus_treasure": card.plus_treasure,
+            "plus_buys": card.plus_buys,
+            "trashes": card.trashes,
+            "is_attack": card.is_attack,
+            "is_reaction": card.is_reaction,
+            "treasure": card.treasure,
+            "victory_points": card.victory_points}
+
+
+@app.route("/edit")
+def edit():
+    """
+    Allow one to edit the cards in the database
+    """
+    return render_template('edit.html')
+
 
 @app.route("/")
 def home():
