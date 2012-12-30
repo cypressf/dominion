@@ -122,7 +122,11 @@ input[type=submit] {
         border-bottom:1px solid #b7afff;
     }
 }
-
+@media screen and (max-width: 28em) {
+    img#github_ribbon {
+        display:none;
+    }
+}
 @media screen and (max-width: 20em) {
     section#form, section#cards, #cards .expansion {
         float:none;
