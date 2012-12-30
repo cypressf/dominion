@@ -54,7 +54,7 @@ If you're interested in modifying this webapp, you need to download the code, se
 ### Recommended
 *   [virtualenv-wrapper](http://www.doughellmann.com/projects/virtualenvwrapper/)
 
-Use the installation method of your choice to get all the requirements on your computer. Mac users: I recommend using (homebrew)[http://mxcl.github.com/homebrew/] to install what you can. Linux users: I recommend using you're favorite package manager (apt-get, yum, pacman, etc). Windows users: (chocolatey)[http://chocolatey.org/] package manager may help.
+Use the installation method of your choice to get all the requirements on your computer. Mac users: I recommend using (homebrew)[http://mxcl.github.com/homebrew/] to install what you can. Linux users: I recommend using you're favorite package manager (apt-get, yum, pacman, etc). Windows users: [chocolatey](http://chocolatey.org/) package manager may help.
 
 Create a virtualenv for this project, and activate it. (I recommend installing virtualenv-wrapper to make this easier).
 
