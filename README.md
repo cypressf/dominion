@@ -4,7 +4,7 @@ Dominion Randomizer Webapp
 
 Overview
 --------
-A very quick randomizer for the [Dominion card game](http://www.riograndegames.com/games.html?id=278). There are many existing randomizer websites, but I am not satisfied; I want to strive to make the user interaction better. The goal of this randomizer is to make randomizing a desired deck of cards as fast and easy as possible.
+A very quick randomizer for the [Dominion card game](http://www.riograndegames.com/games.html?id=278). There are many existing randomizer websites, but they work poorly on mobile phones, and suffer from small usability problems. The goal of this randomizer is to make randomizing a desired deck of cards as fast and easy as possible.
 
 API
 ---
