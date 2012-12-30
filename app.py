@@ -1,10 +1,74 @@
-from flask import Flask, request, redirect, render_template, url_for, make_response, jsonify
+from flask import Flask, request, redirect, render_template, url_for, make_response, jsonify, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from urlparse import urlparse, urljoin
 from sqlalchemy.sql.expression import func, select
+from functools import wraps
 import os
 import random
 import string
+from werkzeug.security import generate_password_hash, check_password_hash
+
+# basic authentication
+def check_auth(username, password):
+    admin = User.query.filter_by(username="cypressf").first()
+    return username == "cypressf" and admin.check_password(password)
+
+def authenticate():
+    resp = jsonify({'error': "You must authenticate."})
+    resp.status_code = 401
+    resp.headers['WWW-Authenticate'] = 'Basic realm="Dominion Randomizer"'
+    return resp
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth: 
+            return authenticate()
+
+        elif not check_auth(auth.username, auth.password):
+            return authenticate("Authentication Failed.")
+        return f(*args, **kwargs)
+
+    return decorated
+
+# from flask_oauth import OAuth
+# outh = OAuth()
+# facebook = oauth.remote_app('facebook',
+#     base_url='https://graph.facebook.com/',
+#     request_token_url=None,
+#     access_token_url='/oauth/access_token',
+#     authorize_url='https://www.facebook.com/dialog/oauth',
+#     consumer_key=382750511818943,
+#     consumer_secret='e1ac51640541de6e0dabcc96c92ce638',
+#     request_token_params={'scope': 'email'}
+# )
+
+# @facebook.tokengetter
+# def get_facebook_token(token=None):
+#     return session.get('facebook_token')
+
+# @app.route('/login')
+# def login():
+#     return facebook.authorize(callback=url_for('oauth_authorized',
+#         next=request.args.get('next') or request.referrer or None))
+
+# @app.route('/oauth-authorized')
+# @facebook.authorized_handler
+# def oauth_authorized(resp):
+#     next_url = request.args.get('next') or url_for('index')
+#     if resp is None:
+#         flash(u'You denied the request to sign in.')
+#         return redirect(next_url)
+
+#     session['facebook_token'] = (
+#         resp['oauth_token'],
+#         resp['oauth_token_secret']
+#     )
+#     session['facebook_user'] = resp['screen_name']
+
+#     flash('You were signed in as %s' % resp['screen_name'])
+#     return redirect(next_url)
 
 
 #################
@@ -62,6 +126,22 @@ collections = db.Table('collections',
     db.Column('collection_id', db.Integer, db.ForeignKey('collection.id'))
 )
 
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(100), unique = True)
+    pw_hash = db.Column(db.String(700))
+
+    def __init__(self, username, password):
+        self.username = username
+        self.set_password(password)
+
+    def set_password(self, password):
+        self.pw_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.pw_hash, password)
+
 class Expansion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
@@ -111,7 +191,9 @@ class Collection(db.Model):
 # Routes
 ################
 
+
 @app.route("/api/")
+@requires_auth
 def api():
     """
     Return instructions on how to use the api
@@ -141,15 +223,9 @@ def api_expansions():
     expansions = {}
     expansion_query = Expansion.query.all()
     for e in expansion_query:
-        # put the names of the cards in a list
-        card_names = [{"name": c.name} for c in e.cards]
-        card_dict = {}
-        for card in e.cards:
-            card_dict[card.name] = dict_from_card(card)
+        cards = [dict_from_card(card) for card in e.cards]
+        expansions[e.name] = cards
 
-        # store this list as the value under the expansion's name
-        # in the expansions dictionary
-        expansions[e.name] = card_dict
     return jsonify(expansions)
 
 @app.route("/api/cards/")
@@ -177,13 +253,11 @@ def api_cards():
             return jsonify({"error": "something was malformed in your request params"})
     else:
         card_query = Card.query.all()
-    
-    card_dict = {}
-    for card in card_query:
-        card_dict[card.name] = dict_from_card(card)
-    return jsonify(card_dict)
 
-@app.route("/api/cards/<id>", methods=['POST', 'GET'])
+    cards = {"cards": [dict_from_card(card) for card in card_query]}
+    return jsonify(cards)
+
+@app.route("/api/cards/<int:id>", methods=['POST', 'GET'])
 def api_card(id):
     """
     Return a card matching an id.
@@ -198,7 +272,7 @@ def api_card(id):
     if request.method == "GET":
         return api_get_card(id)
 
-
+@requires_auth
 def api_modify_card(id, request):
     card = get_card(id)
     if not card:
@@ -279,6 +353,7 @@ def dict_from_card(card):
 
 
 @app.route("/edit")
+@requires_auth
 def edit():
     """
     Allow one to edit the cards in the database
