@@ -8,10 +8,56 @@ import random
 import string
 from werkzeug.security import generate_password_hash, check_password_hash
 
+#################
+# Globals
+#################
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']
+db = SQLAlchemy(app)
+_ADMIN_NAME = "cypressf"
+_VALID_ARGS = ["min_cost_treasure",
+               "max_cost_treasure",
+               "min_cost_potion",
+               "max_cost_potions",
+               "min_plus_actions",
+               "max_plus_actions",
+               "min_plus_treasure",
+               "max_plus_treasure",
+               "min_plus_cards",
+               "max_plus_cards",
+               "min_plus_buys",
+               "max_plus_buys",
+               "min_victory_points",
+               "max_victory_points",
+               "min_trashes",
+               "max_trashes",
+               "is_attack",
+               "is_reaction",
+               "min_treasure",
+               "max_treasure",
+               "min_victory_points",
+               "max_victory_points"]
+
+_VALID_CARD_PARAMS = [
+                "name",
+                "cost_treasure",
+                "cost_potions",
+                "description",
+                "plus_actions",
+                "plus_cards",
+                "plus_treasure",
+                "plus_buys",
+                "trashes",
+                "is_attack",
+                "is_reaction",
+                "treasure",
+                "victory_points",
+                "expansion_id"]
+
 # basic authentication
 def check_auth(username, password):
     admin = User.query.filter_by(username="cypressf").first()
-    return username == "cypressf" and admin.check_password(password)
+    return username == _ADMIN_NAME and admin.check_password(password)
 
 def authenticate():
     resp = jsonify({'error': "You must authenticate."})
@@ -71,50 +117,7 @@ def requires_auth(f):
 #     return redirect(next_url)
 
 
-#################
-# Globals
-#################
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']
-db = SQLAlchemy(app)
-_VALID_ARGS = ["min_cost_treasure",
-               "max_cost_treasure",
-               "min_cost_potion",
-               "max_cost_potions",
-               "min_plus_actions",
-               "max_plus_actions",
-               "min_plus_treasure",
-               "max_plus_treasure",
-               "min_plus_cards",
-               "max_plus_cards",
-               "min_plus_buys",
-               "max_plus_buys",
-               "min_victory_points",
-               "max_victory_points",
-               "min_trashes",
-               "max_trashes",
-               "is_attack",
-               "is_reaction",
-               "min_treasure",
-               "max_treasure",
-               "min_victory_points",
-               "max_victory_points"]
 
-_VALID_CARD_PARAMS = [
-                "name",
-                "cost_treasure",
-                "cost_potions",
-                "description",
-                "plus_actions",
-                "plus_cards",
-                "plus_treasure",
-                "plus_buys",
-                "trashes",
-                "is_attack",
-                "is_reaction",
-                "treasure",
-                "victory_points",
-                "expansion_id"]
 
 ##################
 # Database classes
