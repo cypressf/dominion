@@ -9,12 +9,25 @@ var _NUMBER_PARAMS = [
                 "treasure",
                 "victory_points"]
 var _OTHER_PARAMS = ["name", "is_attack", "is_reaction", "description"]
+var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+};
 
+function escape_html(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+        return entityMap[s];
+    });
+}
 
-function post_form(url, data, callback){
+function post_form(url, data, callback, form){
     var req = _.http_request();
     req.onreadystatechange = function(){
-        callback(req);
+        callback(req, form);
     };
     req.open('POST', url);
     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -23,19 +36,25 @@ function post_form(url, data, callback){
 
 var card; 
 
-function display_edited_card(req) {
+function successfully_saved(req, form) {
     if (req.readyState === 4) {
         _.debug("received: " + req.status + req.responseText);
         card = JSON.parse(req.responseText);
+        if (req.status === 200) {
+            glow_green(form);
+        }
     }
 }
 
 function display_all_cards() {
     var expansions = randomizer.expansions();
+    var cards;
+    var e;
     for (e in expansions) {
         _.debug(expansions[e]);
         make_header(e);
         cards = expansions[e];
+        var c;
         for(c in cards) {
             populate_card(cards[c]);
         }
@@ -57,6 +76,11 @@ function form_submitted(e) {
     save_card(this);
 }
 
+function glow_green(form) {
+    form.classList.add("green");
+    setTimeout(function(){form.classList.remove("green");}, 1000);
+}
+
 function save_card(form) {
     var inputs = form.elements;
     var i;
@@ -70,12 +94,12 @@ function save_card(form) {
             }
         }
         if (node.value && (node.type === "number" || node.type === "textarea" || node.type === "text")) {
-            str += node.name + "=" + node.value + "&";
+            str += encodeURIComponent(node.name) + "=" + encodeURIComponent(node.value) + "&";
         }
         _.debug("name " + inputs[i].name + " value " + inputs[i].value);
     }
     _.debug(str);
-    post_form('/api/cards/'+inputs["id"].value, str, display_edited_card);
+    post_form('/api/cards/'+inputs["id"].value, str, successfully_saved, form);
 }
 
 function make_header(expansion_name) {
@@ -87,13 +111,13 @@ function make_header(expansion_name) {
 function populate_card(card) {
     var form = document.createElement("form");
     dom_string = "";
-    dom_string +="<input type='hidden' name='id' value='" + card.id +"'>";
-    dom_string += "<input type='text' name='name' placeholder='name' value='"+card.name+"'>";
-    dom_string += "<textarea name='description' placeholder='description' value='"+card.description+"'></textarea>";
+    dom_string +="<input type='hidden' name='id' value='" + escape_html(card.id) +"'>";
+    dom_string += "<input type='text' name='name' placeholder='name' value='"+escape_html(card.name)+"'>";
+    dom_string += "<textarea name='description' placeholder='description'>"+ escape_html(card.description)+ "</textarea>";
     var i;
     for (i = 0; i < _NUMBER_PARAMS.length; i++) {
-        dom_string += "<label>" + _NUMBER_PARAMS[i];
-        dom_string += "<input type='number' name='"+_NUMBER_PARAMS[i]+"' value='"+card[_NUMBER_PARAMS[i]]+"'>";
+        dom_string += "<label>" + escape_html(_NUMBER_PARAMS[i]);
+        dom_string += "<input type='number' name='"+escape_html(_NUMBER_PARAMS[i])+"' value='"+escape_html(card[_NUMBER_PARAMS[i]])+"'>";
         dom_string += "</label>";
     }
     dom_string +="<fieldset><legend>attack</legend>";
@@ -130,6 +154,10 @@ function populate_card(card) {
     form.innerHTML = dom_string;
     document.body.appendChild(form);
 }
-display_all_cards();
-attach_listeners();
 
+function init(){
+    display_all_cards();
+    attach_listeners();
+}
+
+randomizer.sync_db(init());
