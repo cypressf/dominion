@@ -6,45 +6,57 @@
     var javascript_activated = false;
     var form = document.querySelector("#form form")
 
-    function update_local_cards() {
-        /*
-        Get all the cards in jquery form, and update the local database
-        */
-        if (!navigator.onLine) {
-            return;
-        }
-        var req = _.http_request();
+    function sync_db(callback) {
+       /*
+       Get all the cards in jquery form, and update the local database
+       */
+       if (!navigator.onLine) {
+           return;
+       }
+       var req = _.http_request();
 
-        save_cards_locally = function() {
-            if (req.readyState === 4) {
-                // the response is received. all is well.
-                if (req.status === 200) {
-                    // perfect!
-                    _.debug("recevied cards from server. syncing local database");
-                    // put them in local storage
-                    localStorage.cards = req.responseText;
-                    // also get the cards from local storage, and put them in JSON to use in the app
-                    get_local_cards();
-                    activate_javascript();
-                }
-                else {
-                    _.debug("problem...." + req.status);
-                }
-            }
-        }
+       save_cards_locally = function() {
+           if (req.readyState === 4) {
+               // the response is received. all is well.
+               if (req.status === 200) {
+                   // perfect!
+                   _.debug("recevied cards from server. syncing local database");
+                   // put them in local storage
+                   localStorage.cards = req.responseText;
+                   get_local_cards();
+                   if(typeof(callback) == typeof(Function)) {
+                        callback();
+                   }
+               }
+               else {
+                   _.debug("problem...." + req.status);
+               }
+           }
+       }
 
-        req.onreadystatechange = save_cards_locally;
-        req.open('GET', '/api/expansions');
-        req.send(null);
+       req.onreadystatechange = save_cards_locally;
+       req.open('GET', '/api/expansions');
+       req.send(null); 
     }
 
     function get_local_cards() {
         /*
             Take the cards stored in the local database and put them in JSON
-            at the global level to use.
+            at the global level to use. If there are none, then return false.
         */
         _.debug("loading cards from local database");
-        cards = JSON.parse(localStorage.cards);
+        if (!localStorage.cards) {
+            _.debug("localStorage.cards is empty. nothing to retrieve.");
+            return false;
+        }
+        try {
+            cards = JSON.parse(localStorage.cards);
+        }
+        catch(e) {
+            _.debug("failed to get cards from localStorage.cards:");
+            _.debug(e);
+            return false;
+        }
         return cards;
     }
 
@@ -260,7 +272,9 @@
 
     function init() {
         // load the cards from the server-side database (async)
-        update_local_cards();
+        // pass a callback to activate javascript when done
+        sync_db(activate_javascript);
+
         select_previously_used_expansions();
 
         // if there are already cards in the local database,
@@ -278,7 +292,7 @@
     randomizer.init = init;
     randomizer.set_cookie = set_previously_used_expansions;
     randomizer.get_cookie = select_previously_used_expansions;
-    randomizer.sync_db = update_local_cards;
+    randomizer.sync_db = sync_db;
     randomizer.expansions = function() {
         if (cards) {
             return cards;
@@ -286,7 +300,7 @@
         if (cards = get_local_cards()) {
             return cards;
         }
-        update_local_cards();
+        sync_db();
         return false;
     }
     window.randomizer = randomizer;
