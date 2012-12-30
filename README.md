@@ -47,12 +47,10 @@ If you're interested in modifying this webapp, you need to download the code, se
 
 ### Requirements
 *   python 2.7
-*   [virtualenv](http://pypi.python.org/pypi/virtualenv)
+*   [virtualenv](http://pypi.python.org/pypi/virtualenv) ([virtualenv-wrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) recommended)
 *   [pip](http://www.pip-installer.org/en/latest/installing.html)
 *   [postgresql](http://www.postgresql.org/download/) (or another SQL database that's compatible with SQLAlchemy)
 
-### Recommended
-*   [virtualenv-wrapper](http://www.doughellmann.com/projects/virtualenvwrapper/)
 
 Use the installation method of your choice to get all the requirements on your computer. Mac users: I recommend using [homebrew](http://mxcl.github.com/homebrew/) to install what you can. Linux users: I recommend using you're favorite package manager (apt-get, yum, pacman, etc). Windows users: [chocolatey](http://chocolatey.org/) package manager may help.
 
