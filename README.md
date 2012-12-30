@@ -5,6 +5,38 @@ Overview
 ========
 It's useful to have a very quick randomizer when playing the [Dominion card game](http://www.riograndegames.com/games.html?id=278). There are many existing randomizer websites, but I am not satisfied; I want to strive to make the user interaction better. The goal of this randomizer is to make randomizing a desired deck of cards as fast and easy as possible.
 
+API
+===
+You can get details about any dominion card by submitting a GET request to [dominion.olinapps.com/api/cards][http://dominion.olinapps.com/api/cards].
+
+Filter results using these optional parameters:
+```
+    "min_cost_treasure"
+    "max_cost_treasure"
+    "min_cost_potion"
+    "max_cost_potions"
+    "min_plus_actions"
+    "max_plus_actions"
+    "min_plus_treasure"
+    "max_plus_treasure"
+    "min_plus_cards"
+    "max_plus_cards"
+    "min_plus_buys"
+    "max_plus_buys"
+    "min_victory_points"
+    "max_victory_points"
+    "min_trashes"
+    "max_trashes"
+    "is_attack"
+    "is_reaction"
+    "min_treasure"
+    "max_treasure"
+    "min_victory_points"
+    "max_victory_points"
+```
+
+
+
 Technical Overview
 =================
 I created a webapp using [Flask](http://flask.pocoo.org/) on the backend and javascript on the frontend. The backend contains the database with cards in it, and an API that can be accessed by the frontend in order to get and modify cards. The backend contains randomization logic, and this should be built-in to the API eventually, but the frontend contains all the needed logic to act as a stand-alone app. It saves all the card-data in `localStorage.cards` and will function as an offline-app when appcaching is enabled.
