@@ -56,6 +56,9 @@ If you're interested in modifying this webapp, you need to download the code, se
 
 Use the installation method of your choice to get all the requirements on your computer. Mac users: I recommend using [homebrew](http://mxcl.github.com/homebrew/) to install what you can. Linux users: I recommend using you're favorite package manager (apt-get, yum, pacman, etc). Windows users: [chocolatey](http://chocolatey.org/) package manager may help.
 
+
+### Python package installation
+
 Create a virtualenv for this project, and activate it. (I recommend installing virtualenv-wrapper to make this easier).
 
 ```bash
@@ -67,10 +70,13 @@ cd dominion
 pip install -r requirements.txt
 ```
 
+
+### App configuration
 Now open up `app.py` and edit the line that says `app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['HEROKU_POSTGRESQL_BLUE_URL']`. You'll need to change it to something like `app.config['SQLALCHEMY_DATABASE_URI'] = yourdatabaseurlgoeshere`.
 
 Edit the line `_ADMIN_NAME = "cypressf"` to read `_ADMIN_NAME = "your_prefered_admin_username"`
 
+### Initialize database and create admin user
 Now open up a python shell. We're going to create your database and add the admin account for the website.
 ```python
 from app import db, User
@@ -80,7 +86,9 @@ db.session.add(admin)
 db.session.commit()
 ```
 
-Now run the server:
+The admin user is needed for basic authentication when using the API to modify the database.
+
+### Run the server
 ```bash
 python app.py
 ````
