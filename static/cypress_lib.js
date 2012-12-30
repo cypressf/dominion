@@ -11,7 +11,7 @@
 
     library.debug = function(s) {
         if ( debug_flag ) {
-            console.debug(s);
+            console.debug ? console.debug(s) : console.log(s);
         }
     }
 

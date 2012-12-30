@@ -64,6 +64,7 @@
         /*
         Update the page when the form is submitted.
         */
+        e.stopPropagation();
         e.preventDefault();
         update_page();
     }
@@ -142,7 +143,7 @@
         /*
         Given the DOM form, returns a list of checked expansion names.
         */
-        var checkboxes = form.elements.namedItem("expansion");
+        var checkboxes = form.elements["expansion"];
         _.debug(checkboxes);
         var expansions = [];
         for(var i = 0; i < checkboxes.length; i++) {
