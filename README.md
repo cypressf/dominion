@@ -5,7 +5,7 @@ Overview
 ========
 It's useful to have a very quick randomizer when playing the [Dominion card game](http://www.riograndegames.com/games.html?id=278). There are many existing randomizer websites, but I am not satisfied; I want to strive to make the user interaction better. The goal of this randomizer is to make randomizing a desired deck of cards as fast and easy as possible.
 
-Technical Details
+Technical Overview
 =================
 I created a webapp using [Flask](http://flask.pocoo.org/) on the backend and javascript on the frontend. The backend contains the database with cards in it, and an API that can be accessed by the frontend in order to get and modify cards. The backend contains randomization logic, and this should be built-in to the API eventually, but the frontend contains all the needed logic to act as a stand-alone app. It saves all the card-data in `localStorage.cards` and will function as an offline-app when appcaching is enabled.
 
