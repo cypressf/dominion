@@ -403,7 +403,6 @@ def edit():
 def home():
     """
     Display the form that allows someone to select expansions.
-    If GET["expansion"] is part of the request, display a list of randomized cards.
     """
     # expansions = get_expansions(request)
     # cards = get_random_cards(expansions)
