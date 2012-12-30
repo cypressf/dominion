@@ -7,7 +7,7 @@ It's useful to have a very quick randomizer when playing the [Dominion card game
 
 API
 ===
-You can get details about any dominion card by submitting a GET request to [dominion.olinapps.com/api/cards][http://dominion.olinapps.com/api/cards].
+You can get details about any dominion card by submitting a GET request to [dominion.olinapps.com/api/cards](http://dominion.olinapps.com/api/cards).
 
 Filter results using these optional parameters:
 
