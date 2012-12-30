@@ -10,6 +10,7 @@ API
 You can get details about any dominion card by submitting a GET request to [dominion.olinapps.com/api/cards][http://dominion.olinapps.com/api/cards].
 
 Filter results using these optional parameters:
+
 ```
     "min_cost_treasure"
     "max_cost_treasure"
@@ -34,7 +35,6 @@ Filter results using these optional parameters:
     "min_victory_points"
     "max_victory_points"
 ```
-
 
 
 Technical Overview
