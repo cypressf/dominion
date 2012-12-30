@@ -112,14 +112,15 @@
     }
 
     function set_previously_used_expansions() {
-        var cookie_string = get_expansions().join(" ");
+        var cookie_string = get_expansions().join(",");
+        _.debug(cookie_string);
         _.set_cookie("expansions", cookie_string);
     }
 
     function select_previously_used_expansions() {
         var cookie_string;
         if (cookie_string = _.get_cookie("expansions")) {
-            var previous_expansions = cookie_string.split(" ");
+            var previous_expansions = cookie_string.split(",");
             select_expansions(previous_expansions);
         }
     }
@@ -141,7 +142,7 @@
 
     function get_expansions() {
         /*
-        Given the DOM form, returns a list of checked expansion names.
+        Return a list of checked expansion names.
         */
         var checkboxes = form.elements["expansion"];
         _.debug(checkboxes);
