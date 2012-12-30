@@ -47,7 +47,7 @@ If you're interested in modifying this webapp, you need to download the code, se
 
 ### Requirements
 *   python 2.7
-*   [virtualenv](http://pypi.python.org/pypi/virtualenv) ([virtualenv-wrapper](http://www.doughellmann.com/projects/virtualenvwrapper/) recommended)
+*   [virtualenv](http://pypi.python.org/pypi/virtualenv) ([virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/) or [virtualenvwrapper for windows](https://github.com/davidmarble/virtualenvwrapper-win) recommended)
 *   [pip](http://www.pip-installer.org/en/latest/installing.html)
 *   [postgresql](http://www.postgresql.org/download/) (or another SQL database that's compatible with SQLAlchemy)
 
@@ -57,7 +57,16 @@ Use the installation method of your choice to get all the requirements on your c
 
 ### Python package installation
 
-Create a virtualenv for this project, and activate it. (I recommend installing virtualenv-wrapper to make this easier).
+Create a virtualenv for this project, and activate it. If you installed virtualenvwrapper, this is simple.
+
+```bash
+mkvirtualenv dominion
+```
+
+Whenever you want to work on this project in the future, remember to enter this virtualenv (again, using virtualenvwrapper)
+```bash
+workon dominion
+```
 
 ```bash
 # get the code
