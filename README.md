@@ -39,11 +39,10 @@ Filter results using these optional parameters:
 
 Technical Overview
 =================
-I created a webapp using [Flask](http://flask.pocoo.org/) on the backend and javascript on the frontend. The backend contains the database with cards in it, and an API that can be accessed by the frontend in order to get and modify cards. The backend contains randomization logic, and this should be built-in to the API eventually, but the frontend contains all the needed logic to act as a stand-alone app. It saves all the card-data in `localStorage.cards` and will function as an offline-app when appcaching is enabled.
+It's a webapp using [Flask](http://flask.pocoo.org/) on the backend and javascript on the frontend. The backend contains the database with cards in it, and an API that can be accessed by the frontend in order to get and modify cards. The backend contains randomization logic, which should be built-in to the API eventually, but the frontend contains all the needed logic to act as a stand-alone app. It saves all the card-data in `localStorage.cards` and will function as an offline-app when appcaching is enabled.
 
 Installation instructions
 =========================
-If you're interested in modifying this webapp, you need to download the code, set up a database, and install the dependencies.
 
 ### Requirements
 *   python 2.7
