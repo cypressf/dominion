@@ -201,9 +201,19 @@ def api():
     """
     Return instructions on how to use the api
     """
-    pass
+    message = {
+        "resources": {
+            "cards": {
+                "url": "https:/dominion.olinapps.com/api/cards"
+            },
+            "expansions": {
+                "url": "https://dominion.olinapps.com/api/expansions"
+            },
+        }
+    }
+    return jsonify(message)
 
-@app.route("/api/expansions")
+@app.route("/api/expansions/")
 def api_expansions():
     """
     Return a list of expansions, and their cards, in json form.
@@ -230,6 +240,22 @@ def api_expansions():
         expansions[e.name] = cards
 
     return jsonify(expansions)
+
+@app.route("/api/expansions/<int:id>")
+def api_expansion(id):
+    """
+    Return an expansions, and its cards, in json form.
+
+    """
+    expansion = get_expansion(id)
+
+    if expansion:
+        expansion_dict = {}
+        expansion_dict[expansion.name] = [dict_from_card(card) for card in expansion.cards]
+        return jsonify(expansion_dict)
+    else:
+        return jsonify({"error": "no expansions match"})
+
 
 @app.route("/api/cards/")
 def api_cards():
@@ -311,6 +337,15 @@ def get_card(id):
         card = None
 
     return card
+
+def get_expansion(id):
+    try:
+        id = int(id)
+        expansion = Expansion.query.get(int(id))
+    except:
+        expansion = None
+
+    return expansion
 
 def parse_args(args):
     """
