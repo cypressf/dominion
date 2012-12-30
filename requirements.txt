@@ -1,8 +1,12 @@
 Flask==0.9
 Flask-SQLAlchemy==0.16
+Flask-WTF==0.8.2
 Jinja2==2.6
+Pygments==1.5
 SQLAlchemy==0.7.9
+WTForms==1.0.2
 Werkzeug==0.8.3
+bpython==0.12
 distribute==0.6.26
 gunicorn==0.14.6
 psycopg2==2.4.5
