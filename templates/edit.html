@@ -13,6 +13,7 @@
         float:left;
         margin:1em;
         font-size:1em;
+        -webkit-transition:background 1.5s;
     }
     label {
         color:inherit;
@@ -48,9 +49,14 @@
     textarea {
         width:100%;
         box-sizing:border-box;
-        height:4em;
+        height:6em;
         font:inherit;
         padding:0.5em;
+        line-height:1.2;
+        background:inherit;
+    }
+    textarea:hover, input:hover, label:hover, textarea:focus, input:focus, label:focus {
+        background:#eee;
     }
     fieldset label {
         display:inline-block;
@@ -58,6 +64,10 @@
     fieldset{
         border:1px solid #d2b98c;
         display:inline-block;
+    }
+    form.green {
+        background:#d1edcc;
+        -webkit-transition:background 0.2s;
     }
 </style>
 {% endblock %}
