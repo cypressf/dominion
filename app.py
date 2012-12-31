@@ -234,9 +234,10 @@ def api_expansions():
     }
     """
     expansions = {}
-    expansion_query = Expansion.query.all()
+    expansion_query = Expansion.query.order_by("name")
     for e in expansion_query:
-        cards = [dict_from_card(card) for card in e.cards]
+        card_query = e.cards.order_by("name")
+        cards = [dict_from_card(card) for card in card_query]
         expansions[e.name] = cards
 
     return jsonify(expansions)
@@ -251,7 +252,8 @@ def api_expansion(id):
 
     if expansion:
         expansion_dict = {}
-        expansion_dict[expansion.name] = [dict_from_card(card) for card in expansion.cards]
+        cards = expansion.cards.order_by("name")
+        expansion_dict[expansion.name] = [dict_from_card(card) for card in cards]
         return jsonify(expansion_dict)
     else:
         return jsonify({"error": "no expansions match"})
@@ -406,7 +408,7 @@ def home():
     """
     # expansions = get_expansions(request)
     # cards = get_random_cards(expansions)
-    all_expansions = Expansion.query.all()
+    all_expansions = Expansion.query.order_by("name")
     all_expansions = [e.name for e in all_expansions]
     
     # if not cards:
