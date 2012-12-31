@@ -284,6 +284,14 @@
         }
         form.addEventListener("submit", randomize_clicked);
         javascript_activated = true;
+
+        // hack to enable clicking on labels in iOS to select the checkbox
+        // http://stackoverflow.com/questions/7358781/tapping-on-label-in-mobile-safari
+        var labels = document.querySelectorAll("label");
+        var i;
+        for (i = 0; i < labels.length; i++) {
+            labels[i].addEventListener("click",function() {});
+        }
     }
 
     function init() {
@@ -302,6 +310,7 @@
                 update_page();
             }
         }
+
     }
 
     randomizer.init = init;
