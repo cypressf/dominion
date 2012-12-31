@@ -2,6 +2,8 @@
     // we'll store all our globals in here
     var randomizer = {};
 
+    var random_cards = {};
+
     var cards;
     var javascript_activated = false;
     var form = document.querySelector("#form form")
@@ -81,10 +83,17 @@
         set_previously_used_expansions(expansions);
 
         _.debug(expansions);
-        var random_cards = get_random_cards(expansions);
+        get_random_cards(expansions);
         put_in_dom(random_cards);
         window.location.hash = "randomize";
         document.querySelector("#randomize").scrollIntoView();
+    }
+
+    function remove_card(id) {
+        /*
+        Remove a card from the randomized card list, and replace it with a new one.
+        */
+
     }
 
     function put_in_dom(cards) {
@@ -92,14 +101,22 @@
         Put the results of randomization into the DOM
         */
         var i;
-        dom_string = "";
-        for (expansion in cards) {
-            dom_string += "<div id=\"" + expansion + "\" class=\"expansion\">";
-            dom_string += "<h1>" + expansion + "</h1>";
+        var dom_string = "";
+        var card_name;
+        var card_id;
+        var expansion_name;
+        var expansion_id;
+
+        for (var e in cards) {
+            expansion_name = _.escape_html(e);
+            expansion_id = expansion_name.replace(/\s/g, "_")
+            dom_string += "<div id=\"" + expansion_id + "\" class=\"expansion\">";
+            dom_string += "<h1>" + expansion_name + "</h1>";
             dom_string += "<ul>";
-            var i;
-            for (i = 0; i < cards[expansion].length; i++) {
-                dom_string += "<li>" + cards[expansion][i].name + "</li>";
+            for (i = 0; i < cards[e].length; i++) {
+                card_name = _.escape_html(cards[e][i].name);
+                card_id = card_name.replace(/\s/g, "_");
+                dom_string += "<li id='"+card_id+"'>" + card_name + "</li>";
             }
             dom_string += "</ul>";
             dom_string += "</div>";
@@ -173,9 +190,10 @@
             return false;
         }
 
+        random_cards = {};
+
         // get a random number of cards for each expansion
         var ran = constrained_random(expansions.length, 10);
-        var random_cards = {};
         var i;
         for (i = 0; i < expansions.length; i++){
             // don't do anything if there are no cards to be delt

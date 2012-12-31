@@ -57,6 +57,21 @@
         this.set_cookie(name,"",-1);
     }
 
+    library.escape_html = function(s) {
+        var entityMap = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': '&quot;',
+            "'": '&#39;',
+            "/": '&#x2F;'
+        };
+
+        return String(s).replace(/[&<>"'\/]/g, function (s) {
+            return entityMap[s];
+        });
+    }
+
     // put it in the global namespace
     window._ = library;
 })();

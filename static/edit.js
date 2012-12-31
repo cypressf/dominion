@@ -9,20 +9,6 @@ var _NUMBER_PARAMS = [
                 "treasure",
                 "victory_points"]
 var _OTHER_PARAMS = ["name", "is_attack", "is_reaction", "description"]
-var entityMap = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': '&quot;',
-    "'": '&#39;',
-    "/": '&#x2F;'
-};
-
-function escape_html(string) {
-    return String(string).replace(/[&<>"'\/]/g, function (s) {
-        return entityMap[s];
-    });
-}
 
 function post_form(url, data, callback, form){
     var req = _.http_request();
@@ -111,13 +97,13 @@ function make_header(expansion_name) {
 function populate_card(card) {
     var form = document.createElement("form");
     dom_string = "";
-    dom_string +="<input type='hidden' name='id' value='" + escape_html(card.id) +"'>";
-    dom_string += "<input type='text' name='name' placeholder='name' value='"+escape_html(card.name)+"'>";
-    dom_string += "<textarea name='description' placeholder='description'>"+ escape_html(card.description)+ "</textarea>";
+    dom_string +="<input type='hidden' name='id' value='" + _.escape_html(card.id) +"'>";
+    dom_string += "<input type='text' name='name' placeholder='name' value='"+_.escape_html(card.name)+"'>";
+    dom_string += "<textarea name='description' placeholder='description'>"+ _.escape_html(card.description)+ "</textarea>";
     var i;
     for (i = 0; i < _NUMBER_PARAMS.length; i++) {
-        dom_string += "<label>" + escape_html(_NUMBER_PARAMS[i]);
-        dom_string += "<input type='number' name='"+escape_html(_NUMBER_PARAMS[i])+"' value='"+escape_html(card[_NUMBER_PARAMS[i]])+"'>";
+        dom_string += "<label>" + _.escape_html(_NUMBER_PARAMS[i]);
+        dom_string += "<input type='number' name='"+_.escape_html(_NUMBER_PARAMS[i])+"' value='"+_.escape_html(card[_NUMBER_PARAMS[i]])+"'>";
         dom_string += "</label>";
     }
     dom_string +="<fieldset><legend>attack</legend>";
