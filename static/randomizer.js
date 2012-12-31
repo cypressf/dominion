@@ -190,6 +190,8 @@
             cards[expansion].sort( function() { return 0.5 - Math.random() } );
             random_cards[expansion] = cards[expansion].slice(0,ran[i]);
 
+            random_cards[expansion].sort(function(a, b){return a.name > b.name;})
+
             // if the cards are from prosperity, select 
             // whether or not playing with Colony and Platinum
             if (expansion === "Prosperity" && rand_int(1,10) <= ran[i]) {
