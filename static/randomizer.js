@@ -31,7 +31,7 @@
                    }
                }
                else {
-                   _.debug("problem...." + req.status);
+                   _.debug("problem getting cards from server: " + req.status);
                }
            }
        }
@@ -81,8 +81,6 @@
 
         // store the expansions in a cookie, so remember on next page load
         set_previously_used_expansions(expansions);
-
-        _.debug(expansions);
         get_random_cards(expansions);
         put_in_dom(random_cards);
         window.location.hash = "randomize";
@@ -130,7 +128,6 @@
 
     function set_previously_used_expansions() {
         var cookie_string = get_expansions().join(",");
-        _.debug(cookie_string);
         _.set_cookie("expansions", cookie_string);
     }
 
@@ -162,7 +159,6 @@
         Return a list of checked expansion names.
         */
         var checkboxes = form.elements["expansion"];
-        _.debug(checkboxes);
         var expansions = [];
         for(var i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].checked) {
@@ -259,8 +255,6 @@
         }
         dividers.sort(compare_numbers);
         
-        _.debug(dividers);
-
         var intervals = [];
 
         for (i = 0; i < dividers.length - 1; i++) {
@@ -307,7 +301,6 @@
             if (_.get_cookie("expansions")){
                 update_page();
             }
-            _.debug(cards);
         }
     }
 
