@@ -102,6 +102,13 @@ The admin user is needed for basic authentication when using the API to modify t
 ```bash
 python app.py
 ````
-And visit [http://0.0.0.0:5000/](http://0.0.0.0:5000/). You should see a website that looks like [dominion.olinapps.com](http://dominion.olinapps.com).
+And visit [http://0.0.0.0:5000/](http://0.0.0.0:5000/). You should see a website that looks like [dominion.olinapps.com](http://dominion.olinapps.com), except it won't do anything, because there are no cards in your database!
+
+### Populate your database with cards!
+```bash
+python scripts/add_to_db.py
+````
+
+
 
 If you have trouble along the way, don't panic. Ask me for help! I will be able to fix your problems.
