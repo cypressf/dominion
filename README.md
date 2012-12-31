@@ -1,6 +1,9 @@
-Dominion Randomizer Webapp
-==========================
+Dominion Randomizer Webapp Development Branch
+=============================================
 [dominion.olinapps.com](http://dominion.olinapps.com/)
+
+This is the branch to clone if you want the most up-to-date code, but there may be strange bugs. Expect more trouble installing and running the app.
+
 
 Overview
 --------
