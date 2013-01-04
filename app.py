@@ -196,7 +196,6 @@ class Collection(db.Model):
 
 
 @app.route("/api/")
-@requires_auth
 def api():
     """
     Return instructions on how to use the api
