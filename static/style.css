@@ -21,7 +21,7 @@ img#github_ribbon {
     height:100%;
     box-shadow:0 0 10px #000;
     position:fixed;
-    overflow:scroll;
+    overflow:auto;
     -webkit-overflow-scrolling:touch;
 }
 
