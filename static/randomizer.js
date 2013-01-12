@@ -100,10 +100,14 @@
         */
         var i;
         var dom_string = "";
+        var card;
         var card_name;
         var card_id;
         var expansion_name;
         var expansion_id;
+        var card_cost_treasure;
+        var card_is_attack;
+        var card_plus_actions;
 
         for (var e in cards) {
             expansion_name = _.escape_html(e);
@@ -112,9 +116,7 @@
             dom_string += "<h1>" + expansion_name + "</h1>";
             dom_string += "<ul>";
             for (i = 0; i < cards[e].length; i++) {
-                card_name = _.escape_html(cards[e][i].name);
-                card_id = card_name.replace(/\s/g, "_");
-                dom_string += "<li id='"+card_id+"'>" + card_name + "</li>";
+                dom_string += get_card_dom_string(cards[e][i]);
             }
             dom_string += "</ul>";
             dom_string += "</div>";
@@ -124,6 +126,43 @@
         if (cards_html){
             cards_html.innerHTML = dom_string;
         }
+    }
+
+    function get_card_dom_string(card) {
+        /* Given a card object, return a dom string */
+        var e;
+        for (e in card) {
+            card[e] = _.escape_html(card[e]);
+        }
+        card_id = card.name.replace(/\s/g, "_");
+        var dom_string = "<li id='"+card_id+"'>" + card.name;
+        dom_string += "<div class=\"details\">";
+
+        var description = ["plus_actions", "plus_buys", "plus_cards", "plus_treasure", "description"];
+        for (e in description) {
+            var desc_name = description[e];
+            var desc = card[description[e]];
+            if (!desc) {
+                continue;
+            }
+            if (desc_name.search("plus_") !== -1) {
+                if (desc !== "0") {
+
+                    // depluralize
+                    if (desc === "1" && desc_name[desc_name.length - 1] === "s") {
+                        desc_name = desc_name.slice(0, desc_name.length - 1);
+                    }
+
+                    dom_string += "<p class=\"plus\">+" + desc + " " + desc_name.replace("plus_", "") + "</p>";
+                }
+            }
+            else if (desc) {
+                desc = desc.replace("___", "<br>___<br>");
+                dom_string += "<p class=\"desc_name\">" + desc + "</p>";
+            }
+        }
+        dom_string += "</div></li>";
+        return dom_string;
     }
 
     function set_previously_used_expansions() {
