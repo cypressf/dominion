@@ -121,7 +121,7 @@ def requires_auth(f):
 
 ##################
 # Database classes
-# TODO: make this a seperate module and import it
+# TODO: make this a separate module and import it
 ##################
 
 collections = db.Table('collections',
@@ -563,4 +563,3 @@ if __name__ == "__main__":
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
-
