@@ -121,7 +121,7 @@ def requires_auth(f):
 
 ##################
 # Database classes
-# TODO: make this a seperate module and import it
+# TODO: make this a separate module and import it
 ##################
 
 collections = db.Table('collections',
